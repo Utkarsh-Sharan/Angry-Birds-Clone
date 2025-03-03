@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,8 +25,11 @@ public class SlingShotController : MonoBehaviour
     [SerializeField] private GameObject _birdPrefab;
 
     private Vector2 _slingShotLinesPosition;
+    private Vector2 _direction;
+    private Vector2 _directionNormalized;
     private GameObject _spawnedBird;
     private bool _isClickedWithinArea;
+    private float _birdPositionOffset = 0.3f;
 
     private void Awake()
     {
@@ -58,12 +58,17 @@ public class SlingShotController : MonoBehaviour
     {
         SetLines(_idleTransform.position);
 
-        _spawnedBird = Instantiate(_birdPrefab, _idleTransform.position, Quaternion.identity);
+        Vector2 dir = (_centerTransform.position - _idleTransform.position).normalized;
+        Vector2 spawnPosition = (Vector2)_idleTransform.position + dir * _birdPositionOffset;
+
+        _spawnedBird = Instantiate(_birdPrefab, spawnPosition, Quaternion.identity);
+        _spawnedBird.transform.right = dir;
     }
 
     private void PositionAndRotateBird()
     {
-        _spawnedBird.transform.position = _slingShotLinesPosition;
+        _spawnedBird.transform.position = _slingShotLinesPosition + _directionNormalized * _birdPositionOffset;
+        _spawnedBird.transform.right = _directionNormalized;
     }
 
     #region Sling Shot region
@@ -73,6 +78,9 @@ public class SlingShotController : MonoBehaviour
 
         _slingShotLinesPosition = _centerTransform.position + Vector3.ClampMagnitude(touchPosition - _centerTransform.position, _maxDistance);
         SetLines(_slingShotLinesPosition);
+
+        _direction = (Vector2)_centerTransform.position - _slingShotLinesPosition;
+        _directionNormalized = _direction.normalized;
     }
 
     private void SetLines(Vector2 position)
