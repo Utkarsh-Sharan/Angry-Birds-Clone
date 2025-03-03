@@ -1207,6 +1207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1874028045}
   - component: {fileID: 1874028046}
+  - component: {fileID: 1874028047}
   m_Layer: 0
   m_Name: SlingShot
   m_TagString: Untagged
@@ -1246,14 +1247,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 519420031}
-  _leftLineRenderer: {fileID: 939475049}
-  _rightLineRenderer: {fileID: 31691776}
-  _leftStartTransform: {fileID: 1227552933}
-  _rightStartTransform: {fileID: 1350535789}
   _centerTransform: {fileID: 588604664}
   _idleTransform: {fileID: 1014127087}
   _slingShotArea: {fileID: 2082543171}
-  _maxDistance: 3.5
+  _slingShotView: {fileID: 1874028047}
+--- !u!114 &1874028047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874028044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8799e5995d1e240bb8fba0f661ab0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftlineRenderer: {fileID: 939475049}
+  _rightlineRenderer: {fileID: 31691776}
+  _leftStartTransform: {fileID: 1227552933}
+  _rightStartTransform: {fileID: 1350535789}
   _birdPrefab: {fileID: 8423171844055041636, guid: 404e929032baf164dbfd58d8c0efcc83, type: 3}
 --- !u!1 &1890272599
 GameObject:
