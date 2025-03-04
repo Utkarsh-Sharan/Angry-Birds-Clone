@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerBird : MonoBehaviour
+public class BirdController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _birdRigidBody;
     [SerializeField] private CircleCollider2D _birdCollider;

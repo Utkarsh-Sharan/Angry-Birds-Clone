@@ -9,27 +9,24 @@ public class SlingShotModel
     private Vector2 _slingShotLinesPosition;
     private Vector2 _direction;
     private Vector2 _directionNormalized;
-    private SlingShotView _slingShotView;
 
-    public SlingShotModel(SlingShotView slingShotView, Transform centerTransform, Transform idleTransform)
-    {
-        _slingShotView = slingShotView;
-    }
-
-    public void DrawSlingShot(Camera mainCamera, Transform centerTransform)
+    public Vector2 DrawSlingShot(Camera mainCamera, Transform centerTransform)
     {
         Vector3 touchPosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         _slingShotLinesPosition = centerTransform.position + Vector3.ClampMagnitude(touchPosition - centerTransform.position, _maxDistance);
-        _slingShotView.SetLines(_slingShotLinesPosition);
 
         _direction = (Vector2)centerTransform.position - _slingShotLinesPosition;
         _directionNormalized = _direction.normalized;
+
+        return _slingShotLinesPosition;
     }
 
-    public void PositionAndRotateBird() => _slingShotView.PositionAndRotateBird(_slingShotLinesPosition, _directionNormalized, _birdPositionOffset);
+    public Vector2 GetSlingShotLinesPosition() => _slingShotLinesPosition;
 
     public Vector2 GetDirection() => _direction;
+
+    public Vector2 GetDirectionNormalized() => _directionNormalized;
 
     public float GetSlingShotForce() => _slingShotForce;
 

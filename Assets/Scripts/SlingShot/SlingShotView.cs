@@ -11,9 +11,9 @@ public class SlingShotView : MonoBehaviour
     [SerializeField] private Transform _leftStartTransform;
     [SerializeField] private Transform _rightStartTransform;
 
-    [SerializeField] private PlayerBird _birdPrefab;
+    [SerializeField] private BirdController _birdPrefab;
 
-    private PlayerBird _spawnedBird;
+    private BirdController _spawnedBird;
 
     private Transform _centerTransform;
     private Transform _idleTransform;
@@ -68,14 +68,7 @@ public class SlingShotView : MonoBehaviour
         _rightlineRenderer.SetPosition(1, _rightStartTransform.position);
     }
 
-    public IEnumerator SpawnBirdAfterSomeTime()
-    {
-        yield return new WaitForSeconds(2f);
-
-        SpawnBird();
-    }
-
-    public PlayerBird GetSpawnedBird() => _spawnedBird;
+    public BirdController GetSpawnedBird() => _spawnedBird;
 
     public bool GetBirdStatus() => _isBirdOnSlingShot;
 
