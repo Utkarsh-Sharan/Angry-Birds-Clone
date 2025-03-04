@@ -5,6 +5,7 @@ public class SlingShotModel
 {
     private float _maxDistance = 3.5f;
     private float _birdPositionOffset = 0.3f;
+    private float _slingShotForce = 5f;
     private Vector2 _slingShotLinesPosition;
     private Vector2 _direction;
     private Vector2 _directionNormalized;
@@ -13,7 +14,6 @@ public class SlingShotModel
     public SlingShotModel(SlingShotView slingShotView, Transform centerTransform, Transform idleTransform)
     {
         _slingShotView = slingShotView;
-        _slingShotView.SpawnBird(centerTransform, idleTransform, _birdPositionOffset);
     }
 
     public void DrawSlingShot(Camera mainCamera, Transform centerTransform)
@@ -27,8 +27,11 @@ public class SlingShotModel
         _directionNormalized = _direction.normalized;
     }
 
-    public void PositionAndRotateBird()
-    {
-        _slingShotView.PositionAndRotateBird(_slingShotLinesPosition, _directionNormalized, _birdPositionOffset);
-    }
+    public void PositionAndRotateBird() => _slingShotView.PositionAndRotateBird(_slingShotLinesPosition, _directionNormalized, _birdPositionOffset);
+
+    public Vector2 GetDirection() => _direction;
+
+    public float GetSlingShotForce() => _slingShotForce;
+
+    public float GetBirdPositionOffset() => _birdPositionOffset;
 }

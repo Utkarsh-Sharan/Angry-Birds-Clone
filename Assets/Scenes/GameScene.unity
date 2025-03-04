@@ -1267,7 +1267,7 @@ MonoBehaviour:
   _rightlineRenderer: {fileID: 31691776}
   _leftStartTransform: {fileID: 1227552933}
   _rightStartTransform: {fileID: 1350535789}
-  _birdPrefab: {fileID: 8423171844055041636, guid: 404e929032baf164dbfd58d8c0efcc83, type: 3}
+  _birdPrefab: {fileID: 3914565488611131432, guid: 404e929032baf164dbfd58d8c0efcc83, type: 3}
 --- !u!1 &1890272599
 GameObject:
   m_ObjectHideFlags: 0
