@@ -33,17 +33,26 @@ public class SlingShotController : MonoBehaviour
         if(Mouse.current.leftButton.isPressed && _isClickedWithinArea && _slingShotView.GetBirdStatus())
         {
             Vector2 slingShotLinesPosition = _slingShotModel.DrawSlingShot(_mainCamera, _centerTransform);
+
             _slingShotView.SetLines(slingShotLinesPosition);
             _slingShotView.PositionAndRotateBird(_slingShotModel.GetSlingShotLinesPosition(), _slingShotModel.GetDirectionNormalized(), _slingShotModel.GetBirdPositionOffset());
         }
 
         if(Mouse.current.leftButton.wasReleasedThisFrame && _slingShotView.GetBirdStatus() == true)
         {
-            _isClickedWithinArea = false;
+            if (GameService.Instance.GetLevelController().AreEnoughTriesLeft())
+            {
+                _isClickedWithinArea = false;
 
-            _slingShotView.GetSpawnedBird().LaunchBird(_slingShotModel.GetDirection(), _slingShotModel.GetSlingShotForce());
-            _slingShotView.SetBirdStatus(false);
-            StartCoroutine(SpawnBirdAfterSomeTime());
+                _slingShotView.GetSpawnedBird().LaunchBird(_slingShotModel.GetDirection(), _slingShotModel.GetSlingShotForce());
+                _slingShotView.SetBirdStatus(false);
+                _slingShotView.SetLines(_centerTransform.position);
+
+                GameService.Instance.GetLevelController().IncreaseTries();
+
+                if(GameService.Instance.GetLevelController().AreEnoughTriesLeft())
+                    StartCoroutine(SpawnBirdAfterSomeTime());
+            }
         }
     }
 
