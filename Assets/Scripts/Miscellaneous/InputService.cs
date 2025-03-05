@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,7 +29,6 @@ public class InputService : MonoBehaviour
         _isLeftMouseButtonPressed = _mouseAction.IsPressed();
     }
 
-    public PlayerInput GetPlayerInput() => _playerInput;
     public Vector2 GetMousePosition() => _mousePosition;
     public bool WasLeftMouseButtonPressed() => _wasLeftMouseButtonPressed;
     public bool WasLeftMouseButtonReleased() => _wasLeftMouseButtonReleased;

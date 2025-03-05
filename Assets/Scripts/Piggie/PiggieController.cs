@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PiggieController : MonoBehaviour
 {
+    [SerializeField] private GameObject _piggyDeathParticle;
+
     private float _maxHealth = 3f;
     private float _currentHealth;
     private float _damageThreshold = 0.2f;
@@ -24,6 +26,7 @@ public class PiggieController : MonoBehaviour
     private void Die()
     {
         GameService.Instance.GetLevelController().RemovePiggyFromLevelList(this);
+        Instantiate(_piggyDeathParticle, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 
