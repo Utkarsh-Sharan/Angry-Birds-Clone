@@ -18,9 +18,12 @@ public class SlingShotController : MonoBehaviour
     private SlingShotModel _slingShotModel;
     private bool _isClickedWithinArea;
     private int _life = 2;
+    private InputService _inputService;
 
     private void Awake()
     {
+        _inputService = GameService.Instance.GetInputService();
+
         _slingShotModel = new SlingShotModel();
         _slingShotView.Initialize(_centerTransform, _idleTransform, _slingShotModel.GetBirdPositionOffset());
         _slingShotView.SpawnBird();
@@ -28,10 +31,10 @@ public class SlingShotController : MonoBehaviour
 
     private void Update()
     {
-        if(Mouse.current.leftButton.wasPressedThisFrame && _slingShotArea.IsWithinSlingShotArea())
+        if(_inputService.WasLeftMouseButtonPressed() && _slingShotArea.IsWithinSlingShotArea())
             _isClickedWithinArea = true;
 
-        if(Mouse.current.leftButton.isPressed && _isClickedWithinArea && _slingShotView.GetBirdStatus())
+        if(_inputService.IsLeftMouseButtonPressed() && _isClickedWithinArea && _slingShotView.GetBirdStatus())
         {
             Vector2 slingShotLinesPosition = _slingShotModel.DrawSlingShot(_mainCamera, _centerTransform);
 
@@ -39,7 +42,7 @@ public class SlingShotController : MonoBehaviour
             _slingShotView.PositionAndRotateBird(_slingShotModel.GetSlingShotLinesPosition(), _slingShotModel.GetDirectionNormalized(), _slingShotModel.GetBirdPositionOffset());
         }
 
-        if(Mouse.current.leftButton.wasReleasedThisFrame && _slingShotView.GetBirdStatus() == true)
+        if(_inputService.WasLeftMouseButtonReleased() && _slingShotView.GetBirdStatus() == true)
         {
             if (GameService.Instance.GetLevelController().AreEnoughTriesLeft())
             {

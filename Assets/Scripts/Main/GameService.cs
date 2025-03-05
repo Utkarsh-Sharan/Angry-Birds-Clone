@@ -9,6 +9,7 @@ public class GameService : MonoBehaviour
 
     [SerializeField] private LevelController _levelController;
     [SerializeField] private UIService _uIService;
+    [SerializeField] private InputService _inputService;
 
     private void Awake()
     {
@@ -18,4 +19,5 @@ public class GameService : MonoBehaviour
 
     public LevelController GetLevelController() => _levelController;
     public UIService GetUIService() => _uIService;
+    public InputService GetInputService() => _inputService;
 }

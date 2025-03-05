@@ -8,7 +8,7 @@ public class SlingShotArea : MonoBehaviour
 
     public bool IsWithinSlingShotArea()
     {
-        Vector2 worldPosition = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 worldPosition = _mainCamera.ScreenToWorldPoint(GameService.Instance.GetInputService().GetMousePosition());
 
         if (Physics2D.OverlapPoint(worldPosition, _slingShotAreaMask))
             return true;
