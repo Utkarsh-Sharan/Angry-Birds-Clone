@@ -8,6 +8,7 @@ public class GameService : MonoBehaviour
     public static GameService Instance { get { return _instance; } }
 
     [SerializeField] private LevelController _levelController;
+    [SerializeField] private UIService _uIService;
 
     private void Awake()
     {
@@ -16,4 +17,5 @@ public class GameService : MonoBehaviour
     }
 
     public LevelController GetLevelController() => _levelController;
+    public UIService GetUIService() => _uIService;
 }
