@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_wood_0
+      name: HollowLongBlock
       rect:
         serializedVersion: 2
         x: 640
@@ -144,7 +144,7 @@ TextureImporter:
         width: 70
         height: 219
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,7 +157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_wood_1
+      name: ThickRectangularBlock
       rect:
         serializedVersion: 2
         x: 0
@@ -165,7 +165,7 @@ TextureImporter:
         width: 220
         height: 140
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,7 +178,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_wood_2
+      name: ThickSquareBlock
       rect:
         serializedVersion: 2
         x: 640
@@ -186,7 +186,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,7 +199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_wood_3
+      name: HollowSquareBlock
       rect:
         serializedVersion: 2
         x: 500
@@ -207,7 +207,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,7 +220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_wood_4
+      name: HollowTriangularBlock
       rect:
         serializedVersion: 2
         x: 360
@@ -228,7 +228,7 @@ TextureImporter:
         width: 139
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -251,11 +251,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spritesheet_wood_0: -674708068
-      spritesheet_wood_1: -634012833
-      spritesheet_wood_2: 1452426985
-      spritesheet_wood_3: -356390951
-      spritesheet_wood_4: -341219694
+      HollowLongBlock: -674708068
+      HollowSquareBlock: -356390951
+      HollowTriangularBlock: -341219694
+      ThickRectangularBlock: -634012833
+      ThickSquareBlock: 1452426985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
