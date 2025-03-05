@@ -42,7 +42,7 @@ public class SlingShotController : MonoBehaviour
             _slingShotView.PositionAndRotateBird(_slingShotModel.GetSlingShotLinesPosition(), _slingShotModel.GetDirectionNormalized(), _slingShotModel.GetBirdPositionOffset());
         }
 
-        if(_inputService.WasLeftMouseButtonReleased() && _slingShotView.GetBirdStatus() == true)
+        if(_inputService.WasLeftMouseButtonReleased() && _slingShotView.GetBirdStatus())
         {
             if (GameService.Instance.GetLevelController().AreEnoughTriesLeft())
             {
