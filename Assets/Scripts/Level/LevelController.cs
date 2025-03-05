@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
@@ -8,10 +10,14 @@ public class LevelController : MonoBehaviour
 
     private int _maxTries = 3;
     private int _triesLeft;
+    private float _timeToDecideWinOrLoss = 3f;
 
-    private void Start()
+    private List<PiggieController> _piggies;
+
+    private void Awake()
     {
         _currentLevel = Level.Level_1;
+        _piggies = new List<PiggieController>();
     }
 
     public bool AreEnoughTriesLeft()
@@ -25,5 +31,47 @@ public class LevelController : MonoBehaviour
     public void IncreaseTries()
     {
         ++_triesLeft;
+        CheckForLastTry();
+    }
+
+    private void CheckForLastTry()
+    {
+        if (_triesLeft == _maxTries)
+            StartCoroutine(CheckForAllPiggiesDead());
+    }
+
+    private IEnumerator CheckForAllPiggiesDead()
+    {
+        yield return new WaitForSeconds(_timeToDecideWinOrLoss);
+
+        if(_piggies.Count < 0)
+            GameWon();
+
+        else
+            GameLost();
+    }
+
+    public void AddPiggyToLevelList(PiggieController piggy) => _piggies.Add(piggy);
+
+    public void RemovePiggyFromLevelList(PiggieController piggy)
+    {
+        _piggies.Remove(piggy);
+        CheckIfAllPiggiesAreDead();
+    }
+
+    private void CheckIfAllPiggiesAreDead()
+    {
+        if(_piggies.Count == 0)
+            GameWon();
+    }
+
+    private void GameWon()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void GameLost()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
