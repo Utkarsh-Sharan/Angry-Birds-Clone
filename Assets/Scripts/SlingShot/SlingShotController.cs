@@ -17,6 +17,7 @@ public class SlingShotController : MonoBehaviour
 
     private SlingShotModel _slingShotModel;
     private bool _isClickedWithinArea;
+    private int _life = 2;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class SlingShotController : MonoBehaviour
                 _slingShotView.SetBirdStatus(false);
                 _slingShotView.SetLines(_centerTransform.position);
 
+                GameService.Instance.GetUIService().DecreaseLife(_life--);
                 GameService.Instance.GetLevelController().IncreaseTries();
 
                 if(GameService.Instance.GetLevelController().AreEnoughTriesLeft())
