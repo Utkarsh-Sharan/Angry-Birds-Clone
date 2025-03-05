@@ -48,7 +48,7 @@ public class LevelController : MonoBehaviour
             GameWon();
 
         else
-            GameLost();
+            RestartGame();
     }
 
     public void AddPiggyToLevelList(PiggieController piggy) => _piggies.Add(piggy);
@@ -67,10 +67,10 @@ public class LevelController : MonoBehaviour
 
     private void GameWon()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameService.Instance.GetUIService().DisplayRestartScreen();
     }
 
-    private void GameLost()
+    private void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
