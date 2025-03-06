@@ -13,7 +13,10 @@ public class SlingShotView : MonoBehaviour
     [SerializeField] private Transform _rightStartTransform;
     [SerializeField] private Transform _elasticTransform;
 
+    [Header("Scripts")]
     [SerializeField] private BirdController _birdPrefab;
+
+    [Header("Animation Curve")]
     [SerializeField] private AnimationCurve _elasticCurve;
 
     private BirdController _spawnedBird;

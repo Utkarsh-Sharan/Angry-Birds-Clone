@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dab5c1c544650143879c790c4118b0e, type: 3}
   m_Name: PopAudioSO
   m_EditorClassIdentifier: 
-  AudioType: 0
-  AudioClip: {fileID: 0}
+  AudioType: 3
+  AudioClip: {fileID: 8300000, guid: 107a17234aa9b1c4c9def99b534f7da1, type: 3}

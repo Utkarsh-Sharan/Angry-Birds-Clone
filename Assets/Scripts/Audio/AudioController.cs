@@ -24,7 +24,7 @@ public class AudioController : MonoBehaviour
         if(_audioClipDictionary.TryGetValue(audioType, out AudioClip clip))
         {
             _audioSource.clip = clip;
-            _audioSource.PlayOneShot(_audioSource.clip);
+            _audioSource.Play();
         }
     }
 }

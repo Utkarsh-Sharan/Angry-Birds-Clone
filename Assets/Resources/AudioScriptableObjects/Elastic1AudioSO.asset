@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Elastic1AudioSO
   m_EditorClassIdentifier: 
   AudioType: 0
-  AudioClip: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: c38456d6d90439d44be8002955eaea4b, type: 3}

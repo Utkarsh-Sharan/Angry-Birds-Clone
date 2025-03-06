@@ -17,7 +17,7 @@ public class SlingShotController : MonoBehaviour
 
     private SlingShotModel _slingShotModel;
     private bool _isClickedWithinArea;
-    private int _life = 2;
+    private int _life = 3;
     private InputService _inputService;
 
     private void Awake()
@@ -32,7 +32,10 @@ public class SlingShotController : MonoBehaviour
     private void Update()
     {
         if(_inputService.WasLeftMouseButtonPressed() && _slingShotArea.IsWithinSlingShotArea())
+        {
             _isClickedWithinArea = true;
+            GameService.Instance.GetAudioService().PlaySound(AudioType.Leather_Pull);
+        }
 
         if(_inputService.IsLeftMouseButtonPressed() && _isClickedWithinArea && _slingShotView.GetBirdStatus())
         {
@@ -52,8 +55,9 @@ public class SlingShotController : MonoBehaviour
                 _slingShotView.SetBirdStatus(false);
                 _slingShotView.AnimateSlingShot();
 
-                GameService.Instance.GetUIService().DecreaseLife(_life--);
+                GameService.Instance.GetUIService().DecreaseLife(--_life);
                 GameService.Instance.GetLevelController().IncreaseTries();
+                GameService.Instance.GetAudioService().PlaySound(AudioType.Elastic_1);
 
                 if(GameService.Instance.GetLevelController().AreEnoughTriesLeft())
                     StartCoroutine(SpawnBirdAfterSomeTime());

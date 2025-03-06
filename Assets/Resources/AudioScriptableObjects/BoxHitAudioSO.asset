@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dab5c1c544650143879c790c4118b0e, type: 3}
   m_Name: BoxHitAudioSO
   m_EditorClassIdentifier: 
-  AudioType: 0
-  AudioClip: {fileID: 0}
+  AudioType: 2
+  AudioClip: {fileID: 8300000, guid: d6da8a1a0b20c004ab3ad47de4caf5d2, type: 3}

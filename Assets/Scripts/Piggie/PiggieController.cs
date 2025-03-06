@@ -26,6 +26,8 @@ public class PiggieController : MonoBehaviour
     private void Die()
     {
         GameService.Instance.GetLevelController().RemovePiggyFromLevelList(this);
+        GameService.Instance.GetAudioService().PlaySound(AudioType.Pop);
+
         Instantiate(_piggyDeathParticle, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }

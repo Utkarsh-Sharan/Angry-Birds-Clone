@@ -33,5 +33,7 @@ public class BirdController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _shouldFaceVelocityDirection = false;
+        GameService.Instance.GetAudioService().PlaySound(AudioType.Box_Hit);
+        Destroy(this);
     }
 }
