@@ -8,13 +8,27 @@ public class GameService : MonoBehaviour
     public static GameService Instance { get { return _instance; } }
 
     [SerializeField] private LevelController _levelController;
+    [SerializeField] private AudioController _audioController;
+
     [SerializeField] private UIService _uIService;
     [SerializeField] private InputService _inputService;
+
+    [SerializeField] private List<AudioScriptableObject> _audioSOList;
+    [SerializeField] private AudioSource _audioSource;
+
+    private AudioService _audioService;
 
     private void Awake()
     {
         if(_instance == null)
             _instance = this;
+
+        CreateServices();
+    }
+
+    public void CreateServices()
+    {
+        _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
     }
 
     public LevelController GetLevelController() => _levelController;
