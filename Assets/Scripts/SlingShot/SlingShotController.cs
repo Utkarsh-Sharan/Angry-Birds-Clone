@@ -50,7 +50,7 @@ public class SlingShotController : MonoBehaviour
 
                 _slingShotView.GetSpawnedBird().LaunchBird(_slingShotModel.GetDirection(), _slingShotModel.GetSlingShotForce());
                 _slingShotView.SetBirdStatus(false);
-                _slingShotView.SetLines(_centerTransform.position);
+                _slingShotView.AnimateSlingShot();
 
                 GameService.Instance.GetUIService().DecreaseLife(_life--);
                 GameService.Instance.GetLevelController().IncreaseTries();

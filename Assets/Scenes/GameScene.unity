@@ -2597,7 +2597,68 @@ MonoBehaviour:
   _rightlineRenderer: {fileID: 31691776}
   _leftStartTransform: {fileID: 1227552933}
   _rightStartTransform: {fileID: 1350535789}
+  _elasticTransform: {fileID: 1748694576}
   _birdPrefab: {fileID: 3914565488611131432, guid: 404e929032baf164dbfd58d8c0efcc83, type: 3}
+  _elasticCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 17.311157
+      outSlope: 17.311157
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.072207764
+      value: 1.25
+      inSlope: -4.798239
+      outSlope: -4.798239
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.010317494
+    - serializedVersion: 3
+      time: 0.1601766
+      value: 0.89987016
+      inSlope: 1.9203037
+      outSlope: 1.9203037
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18063436
+      outWeight: 0.04526518
+    - serializedVersion: 3
+      time: 0.24455665
+      value: 1.0329008
+      inSlope: -0.81853914
+      outSlope: -0.81853914
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.02830922
+    - serializedVersion: 3
+      time: 0.29689458
+      value: 1
+      inSlope: -0.02565639
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.042372845
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1877460610
 PrefabInstance:
   m_ObjectHideFlags: 0
