@@ -32,7 +32,7 @@ public class GameService : MonoBehaviour
         CreateServices();
     }
 
-    public void CreateServices()
+    private void CreateServices()
     {
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
         _cameraService = new CameraService(_cameraController);
