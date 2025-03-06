@@ -18,7 +18,11 @@ public class GameService : MonoBehaviour
     [SerializeField] private List<AudioScriptableObject> _audioSOList;
     [SerializeField] private AudioSource _audioSource;
 
+    [Header("Camera Properties")]
+    [SerializeField] private CameraController _cameraController;
+
     private AudioService _audioService;
+    private CameraService _cameraService;
 
     private void Awake()
     {
@@ -31,10 +35,12 @@ public class GameService : MonoBehaviour
     public void CreateServices()
     {
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
+        _cameraService = new CameraService(_cameraController);
     }
 
     public LevelController GetLevelController() => _levelController;
     public UIService GetUIService() => _uIService;
     public InputService GetInputService() => _inputService;
     public AudioService GetAudioService() => _audioService;
+    public CameraService GetCameraService() => _cameraService;
 }

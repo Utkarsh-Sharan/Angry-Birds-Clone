@@ -58,8 +58,9 @@ public class SlingShotController : MonoBehaviour
                 GameService.Instance.GetUIService().DecreaseLife(--_life);
                 GameService.Instance.GetLevelController().IncreaseTries();
                 GameService.Instance.GetAudioService().PlaySound(AudioType.Elastic_1);
+                GameService.Instance.GetCameraService().SwitchToFollowCamera(_slingShotView.GetSpawnedBird().transform);
 
-                if(GameService.Instance.GetLevelController().AreEnoughTriesLeft())
+                if (GameService.Instance.GetLevelController().AreEnoughTriesLeft())
                     StartCoroutine(SpawnBirdAfterSomeTime());
             }
         }
@@ -69,5 +70,6 @@ public class SlingShotController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         _slingShotView.SpawnBird();
+        GameService.Instance.GetCameraService().SwitchToIdleCamera();
     }
 }
