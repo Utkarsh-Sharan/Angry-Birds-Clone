@@ -27,17 +27,14 @@ public class SlingShotView : MonoBehaviour
     private float _elasticDivider = 1.2f;
     private bool _isBirdOnSlingShot = false;
 
-    private void Awake()
-    {
-        _leftlineRenderer.enabled = false;
-        _rightlineRenderer.enabled = false;
-    }
-
     public void Initialize(Transform centerTransform, Transform idleTransform, float birdPositionOffset)
     {
         _centerTransform = centerTransform;
         _idleTransform = idleTransform;
         _birdPositionOffset = birdPositionOffset;
+        
+        _leftlineRenderer.enabled = false;
+        _rightlineRenderer.enabled = false;
     }
 
     public void SpawnBird()

@@ -1,30 +1,32 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SlingShotController : MonoBehaviour
 {
-    [Header("Camera")]
-    [SerializeField] private Camera _mainCamera;
+    private Camera _mainCamera;
 
-    [Header("Transform References")]
-    [SerializeField] private Transform _centerTransform;
-    [SerializeField] private Transform _idleTransform;
+    private Transform _centerTransform;
+    private Transform _idleTransform;
 
-    [Header("Scripts")]
-    [SerializeField] private SlingShotArea _slingShotArea;
-    [SerializeField] private SlingShotView _slingShotView;
-
+    private SlingShotArea _slingShotArea;
+    private SlingShotView _slingShotView;
     private SlingShotModel _slingShotModel;
-    private bool _isClickedWithinArea;
-    private int _life = 3;
     private InputService _inputService;
 
-    private void Awake()
-    {
-        _inputService = GameService.Instance.GetInputService();
+    private bool _isClickedWithinArea;
+    private int _life = 3;
 
+    public void Initialize(Camera mainCamera, Transform centerTransform, Transform idleTransform, SlingShotArea slingShotArea, SlingShotView slingShotView)
+    {
+        _mainCamera = mainCamera;
+        _centerTransform = centerTransform;
+        _idleTransform = idleTransform;
+        _slingShotArea = slingShotArea;
+        _slingShotView = slingShotView;
+
+        _inputService = GameService.Instance.GetInputService();
         _slingShotModel = new SlingShotModel();
+
         _slingShotView.Initialize(_centerTransform, _idleTransform, _slingShotModel.GetBirdPositionOffset());
         _slingShotView.SpawnBird();
     }
