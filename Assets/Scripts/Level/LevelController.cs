@@ -44,11 +44,10 @@ public class LevelController : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeToDecideWinOrLoss);
 
-        if(_piggies.Count < 0)
-            GameWon();
-
+        if (CheckIfAllPiggiesAreDead())
+            yield return null;
         else
-            RestartGame();
+            GameLost();
     }
 
     public void AddPiggyToLevelList(PiggieController piggy) => _piggies.Add(piggy);
@@ -59,10 +58,15 @@ public class LevelController : MonoBehaviour
         CheckIfAllPiggiesAreDead();
     }
 
-    private void CheckIfAllPiggiesAreDead()
+    private bool CheckIfAllPiggiesAreDead()
     {
         if(_piggies.Count == 0)
+        {
             GameWon();
+            return true;
+        }
+
+        return false;
     }
 
     private void GameWon()
@@ -70,7 +74,7 @@ public class LevelController : MonoBehaviour
         GameService.Instance.GetUIService().DisplayLevelEndScreen(LevelResult.Win);
     }
 
-    private void RestartGame()
+    private void GameLost()
     {
         GameService.Instance.GetUIService().DisplayLevelEndScreen(LevelResult.Lose);
     }

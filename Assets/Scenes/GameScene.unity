@@ -1638,7 +1638,7 @@ Transform:
   m_GameObject: {fileID: 861983672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.368, y: 2.7693558, z: 0}
+  m_LocalPosition: {x: -6.33, y: 2.7693558, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3386,7 +3386,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelController: {fileID: 1470949581}
   _slingShotController: {fileID: 1874028046}
-  _piggieController: {fileID: -9157511392698297968, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
   _audioController: {fileID: 347725592}
   _cameraController: {fileID: 2108241214}
   _uIService: {fileID: 1133843891}
@@ -3396,7 +3395,6 @@ MonoBehaviour:
   _idleTransform: {fileID: 1014127087}
   _slingShotArea: {fileID: 2082543171}
   _slingShotView: {fileID: 1874028047}
-  _piggieDeathParticle: {fileID: 2293037585999488302, guid: 005be0c0c5eab0f41a5f13ef359f4eba, type: 3}
   _audioSOList:
   - {fileID: 11400000, guid: 066fc0e651ebcba4abebae86d1d5315e, type: 2}
   - {fileID: 11400000, guid: 539519445fbe5d4469ed0b608b6f982a, type: 2}
