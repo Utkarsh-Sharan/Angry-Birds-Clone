@@ -67,11 +67,11 @@ public class LevelController : MonoBehaviour
 
     private void GameWon()
     {
-        GameService.Instance.GetUIService().DisplayRestartScreen();
+        GameService.Instance.GetUIService().DisplayLevelEndScreen(LevelResult.Win);
     }
 
     private void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameService.Instance.GetUIService().DisplayLevelEndScreen(LevelResult.Lose);
     }
 }

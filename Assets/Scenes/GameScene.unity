@@ -1825,7 +1825,7 @@ GameObject:
   - component: {fileID: 948623570}
   - component: {fileID: 948623569}
   m_Layer: 5
-  m_Name: RestartScreen
+  m_Name: GameWinScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1844,6 +1844,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1299124938}
+  - {fileID: 1466219612}
   - {fileID: 169610748}
   m_Father: {fileID: 1133843890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2213,6 +2214,8 @@ MonoBehaviour:
   - {fileID: 1671425107}
   - {fileID: 761726303}
   _restartScreen: {fileID: 948623567}
+  _congratsImage: {fileID: 1299124939}
+  _loseText: {fileID: 1466219613}
   _restartButton: {fileID: 169610749}
 --- !u!1 &1198393566
 GameObject:
@@ -2606,6 +2609,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1466219611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1466219612}
+  - component: {fileID: 1466219614}
+  - component: {fileID: 1466219613}
+  m_Layer: 5
+  m_Name: LoseText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1466219612
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466219611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 948623568}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2.002, y: 318}
+  m_SizeDelta: {x: 458.2951, y: 138.107}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1466219613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466219611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 539b3eeabe41bec44b716ad60c73983f, type: 3}
+    m_FontSize: 90
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 9
+    m_MaxSize: 93
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Better Luck Next Time!
+--- !u!222 &1466219614
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466219611}
+  m_CullTransparentMesh: 1
 --- !u!1 &1470949580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,6 +3301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelController: {fileID: 1470949581}
   _audioController: {fileID: 347725592}
+  _cameraController: {fileID: 2108241214}
   _uIService: {fileID: 1133843891}
   _inputService: {fileID: 2104640602}
   _audioSOList:
@@ -3228,7 +3311,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cafad00d0fcbe84b81f09d38f4dc3c2, type: 2}
   - {fileID: 11400000, guid: 2e48193d2f0781446994b33548267a6f, type: 2}
   _audioSource: {fileID: 1753700187}
-  _cameraController: {fileID: 2108241214}
 --- !u!4 &1780208300
 Transform:
   m_ObjectHideFlags: 0

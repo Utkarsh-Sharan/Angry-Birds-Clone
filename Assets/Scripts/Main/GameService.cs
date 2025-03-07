@@ -10,6 +10,7 @@ public class GameService : MonoBehaviour
     [Header("Controllers")]
     [SerializeField] private LevelController _levelController;
     [SerializeField] private AudioController _audioController;
+    [SerializeField] private CameraController _cameraController;
 
     [SerializeField] private UIService _uIService;
     [SerializeField] private InputService _inputService;
@@ -18,9 +19,7 @@ public class GameService : MonoBehaviour
     [SerializeField] private List<AudioScriptableObject> _audioSOList;
     [SerializeField] private AudioSource _audioSource;
 
-    [Header("Camera Properties")]
-    [SerializeField] private CameraController _cameraController;
-
+    private LevelService _levelService;
     private AudioService _audioService;
     private CameraService _cameraService;
 
@@ -34,11 +33,12 @@ public class GameService : MonoBehaviour
 
     private void CreateServices()
     {
+        _levelService = new LevelService(_levelController);
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
         _cameraService = new CameraService(_cameraController);
     }
 
-    public LevelController GetLevelController() => _levelController;
+    public LevelService GetLevelService() => _levelService;
     public UIService GetUIService() => _uIService;
     public InputService GetInputService() => _inputService;
     public AudioService GetAudioService() => _audioService;

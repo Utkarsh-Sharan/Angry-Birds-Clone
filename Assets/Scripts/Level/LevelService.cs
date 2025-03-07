@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelService : MonoBehaviour
+public class LevelService
 {
-    // Start is called before the first frame update
-    void Start()
+    private LevelController _levelController;
+
+    public LevelService(LevelController levelController)
     {
-        
+        _levelController = levelController;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool AreEnoughTriesLeft() => _levelController.AreEnoughTriesLeft();
+    public void IncreaseTries() => _levelController.IncreaseTries();
+    public void AddPiggyToLevelList(PiggieController piggy) => _levelController.AddPiggyToLevelList(piggy);
+    public void RemovePiggyFromLevelList(PiggieController piggy) => _levelController.RemovePiggyFromLevelList(piggy);
 }

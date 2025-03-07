@@ -13,7 +13,7 @@ public class PiggieController : MonoBehaviour
     private void Start()
     {
         _currentHealth = _maxHealth;
-        GameService.Instance.GetLevelController().AddPiggyToLevelList(this);
+        GameService.Instance.GetLevelService().AddPiggyToLevelList(this);
     }
 
     private void DamagePiggie(float damageAmount)
@@ -25,7 +25,7 @@ public class PiggieController : MonoBehaviour
 
     private void Die()
     {
-        GameService.Instance.GetLevelController().RemovePiggyFromLevelList(this);
+        GameService.Instance.GetLevelService().RemovePiggyFromLevelList(this);
         GameService.Instance.GetAudioService().PlaySound(AudioType.Pop);
 
         Instantiate(_piggyDeathParticle, transform.position, Quaternion.identity);

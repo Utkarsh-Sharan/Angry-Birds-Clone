@@ -48,7 +48,7 @@ public class SlingShotController : MonoBehaviour
 
         if(_inputService.WasLeftMouseButtonReleased() && _slingShotView.GetBirdStatus())
         {
-            if (GameService.Instance.GetLevelController().AreEnoughTriesLeft())
+            if (GameService.Instance.GetLevelService().AreEnoughTriesLeft())
             {
                 _isClickedWithinArea = false;
 
@@ -57,10 +57,10 @@ public class SlingShotController : MonoBehaviour
                 _slingShotView.AnimateSlingShot();
 
                 GameService.Instance.GetUIService().DecreaseLife(--_life);
-                GameService.Instance.GetLevelController().IncreaseTries();
+                GameService.Instance.GetLevelService().IncreaseTries();
                 GameService.Instance.GetAudioService().PlaySound(AudioType.Elastic_1);
 
-                if (GameService.Instance.GetLevelController().AreEnoughTriesLeft())
+                if (GameService.Instance.GetLevelService().AreEnoughTriesLeft())
                     StartCoroutine(SpawnBirdAfterSomeTime());
             }
         }
