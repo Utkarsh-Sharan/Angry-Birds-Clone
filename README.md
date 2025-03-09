@@ -56,3 +56,9 @@ New Levels: Adding more levels with increasing difficulty.
 Observer Pattern: Implementing event-driven mechanics for better game state management.
 
 Main Menu: Adding a UI for level selection and game settings.
+
+---
+
+## Watch here:
+
+https://www.loom.com/share/60e651d104f64a1091ecfc2ecdde9bf5?sid=6bd5415a-d006-4ccf-85e5-aad25307ea8d
