@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class UIService : MonoBehaviour
 {
     [SerializeField] private List<Image> _birdLifeIcons;
+
     [SerializeField] private GameObject _restartScreen;
+    [SerializeField] private Image _congratsImage;
+    [SerializeField] private Text _loseText;
     [SerializeField] private Button _restartButton;
 
     private float _birdAlphaToSet = 0.1f;
@@ -23,7 +26,15 @@ public class UIService : MonoBehaviour
         _birdLifeIcons[life].color = birdColor;
     }
 
-    public void DisplayRestartScreen() => _restartScreen.SetActive(true);
+    public void DisplayLevelEndScreen(LevelResult levelResult)
+    {
+        _restartScreen.SetActive(true); 
+
+        if (levelResult == LevelResult.Win)
+            _loseText.enabled = false;
+        else
+            _congratsImage.enabled = false;
+    }
 
     private void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 }

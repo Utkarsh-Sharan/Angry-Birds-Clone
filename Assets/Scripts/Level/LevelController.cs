@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
@@ -44,11 +43,10 @@ public class LevelController : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeToDecideWinOrLoss);
 
-        if(_piggies.Count < 0)
-            GameWon();
-
+        if (CheckIfAllPiggiesAreDead())
+            yield return null;
         else
-            RestartGame();
+            GameLost();
     }
 
     public void AddPiggyToLevelList(PiggieController piggy) => _piggies.Add(piggy);
@@ -59,19 +57,24 @@ public class LevelController : MonoBehaviour
         CheckIfAllPiggiesAreDead();
     }
 
-    private void CheckIfAllPiggiesAreDead()
+    private bool CheckIfAllPiggiesAreDead()
     {
         if(_piggies.Count == 0)
+        {
             GameWon();
+            return true;
+        }
+
+        return false;
     }
 
     private void GameWon()
     {
-        GameService.Instance.GetUIService().DisplayRestartScreen();
+        GameService.Instance.GetUIService().DisplayLevelEndScreen(LevelResult.Win);
     }
 
-    private void RestartGame()
+    private void GameLost()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameService.Instance.GetUIService().DisplayLevelEndScreen(LevelResult.Lose);
     }
 }

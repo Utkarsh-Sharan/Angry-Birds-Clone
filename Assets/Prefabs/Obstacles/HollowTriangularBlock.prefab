@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5944185812799553641}
   - component: {fileID: 2734290647141287968}
   - component: {fileID: 1139191473374877231}
-  - component: {fileID: 4405370783755574500}
+  - component: {fileID: 2928775972610845468}
   m_Layer: 0
   m_Name: HollowTriangularBlock
   m_TagString: Untagged
@@ -113,8 +113,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4405370783755574500
-BoxCollider2D:
+--- !u!60 &2928775972610845468
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -155,6 +155,19 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.39, y: 0.7}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.021489205, y: 0.34999996}
+      - {x: -0.695, y: -0.3143885}
+      - {x: -0.695, y: -0.35}
+      - {x: 0.695, y: -0.35}
+      - {x: 0.6922806, y: -0.31166908}
+      - {x: 0.016928054, y: 0.3472806}
+    - - {x: -0.225, y: -0.089999996}
+      - {x: -0.21499999, y: -0.089999996}
+      - {x: 0.005, y: 0.13}
+      - {x: 0.175, y: -0.04}
+      - {x: 0.315, y: -0.17}
+      - {x: -0.305, y: -0.17}
+      - {x: -0.295, y: -0.17}
+  m_UseDelaunayMesh: 0
