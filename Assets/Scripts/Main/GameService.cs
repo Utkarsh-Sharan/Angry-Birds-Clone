@@ -12,6 +12,7 @@ public class GameService : MonoBehaviour
     [SerializeField] private SlingShotController _slingShotController;
     [SerializeField] private AudioController _audioController;
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private PiggieController _piggyController;
 
     [Header("Services")]
     [SerializeField] private UIService _uIService;
@@ -28,7 +29,11 @@ public class GameService : MonoBehaviour
     [SerializeField] private List<AudioScriptableObject> _audioSOList;
     [SerializeField] private AudioSource _audioSource;
 
+    [Header("Piggy Properties")]
+    [SerializeField] private List<PiggyScriptableObject> _piggySOList;
+
     private LevelService _levelService;
+    private PiggyService _piggyService;
     private SlingShotService _slingShotService;
     private AudioService _audioService;
     private CameraService _cameraService;
@@ -44,6 +49,7 @@ public class GameService : MonoBehaviour
     private void CreateServices()
     {
         _levelService = new LevelService(_levelController);
+        _piggyService = new PiggyService(_piggyController, _piggySOList);
         _slingShotService = new SlingShotService(_slingShotController, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
         _cameraService = new CameraService(_cameraController);
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);

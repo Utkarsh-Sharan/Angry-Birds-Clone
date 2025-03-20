@@ -1,23 +1,28 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PiggieController : MonoBehaviour
 {
-    [SerializeField] private GameObject _piggyDeathParticle;
+    [SerializeField] protected GameObject _piggyDeathParticle;
 
-    private float _maxHealth = 3f;
-    private float _currentHealth;
-    private float _damageThreshold = 0.2f;
+    protected PiggyType piggyType;
+    protected Dictionary<PiggyType, PiggyStats> piggyStatsDictionary;
 
-    private void Start()
+    protected float currentHealth;
+    protected float damageThreshold;
+
+    public virtual void Initialize(List<PiggyScriptableObject> piggySOList)
     {
-        _currentHealth = _maxHealth;
-        GameService.Instance.GetLevelService().AddPiggyToLevelList(this);
+        piggyStatsDictionary = new Dictionary<PiggyType, PiggyStats>();
+
+        foreach(PiggyScriptableObject piggySO in piggySOList)
+            piggyStatsDictionary[piggySO.PiggyType] = piggySO.PiggyStats;
     }
 
     private void DamagePiggie(float damageAmount)
     {
-        _currentHealth -= damageAmount;
-        if (_currentHealth < 0)
+        currentHealth -= damageAmount;
+        if (currentHealth < 0)
             Die();
     }
 
@@ -30,11 +35,11 @@ public class PiggieController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected void OnCollisionEnter2D(Collision2D other)
     {
         float impactVelocity = other.relativeVelocity.magnitude;
 
-        if (impactVelocity > _damageThreshold)
+        if (impactVelocity > damageThreshold)
             DamagePiggie(impactVelocity);
     }
 }

@@ -1684,7 +1684,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingOrder: -9
   m_Sprite: {fileID: 21300000, guid: 642ead8bf8ff91f4eb178576bfc3cd5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2028,10 +2028,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -9157511392698297968, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3642760065576864853, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1915869363}
   m_SourcePrefab: {fileID: 100100000, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
 --- !u!1001 &1005072037
 PrefabInstance:
@@ -2302,6 +2306,11 @@ MonoBehaviour:
   _congratsImage: {fileID: 1299124939}
   _loseText: {fileID: 1466219613}
   _restartButton: {fileID: 169610749}
+--- !u!1 &1136744836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3642760065576864853, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
+  m_PrefabInstance: {fileID: 106900983275628464}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1198393566
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,6 +3397,7 @@ MonoBehaviour:
   _slingShotController: {fileID: 1874028046}
   _audioController: {fileID: 347725592}
   _cameraController: {fileID: 2108241214}
+  _piggyController: {fileID: 106900983275628469}
   _uIService: {fileID: 1133843891}
   _inputService: {fileID: 2104640602}
   _mainCamera: {fileID: 519420031}
@@ -3402,6 +3412,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cafad00d0fcbe84b81f09d38f4dc3c2, type: 2}
   - {fileID: 11400000, guid: 2e48193d2f0781446994b33548267a6f, type: 2}
   _audioSource: {fileID: 1753700187}
+  _piggySOList:
+  - {fileID: 11400000, guid: 48023d5bfaed8bc4fb4bde1bf11b22ad, type: 2}
 --- !u!4 &1780208300
 Transform:
   m_ObjectHideFlags: 0
@@ -3421,6 +3433,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7051483259839293446, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
   m_PrefabInstance: {fileID: 1005072037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1828179098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3642760065576864853, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
+  m_PrefabInstance: {fileID: 979146628}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1871736036 stripped
 Transform:
@@ -3649,6 +3666,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7051483259839293446, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
   m_PrefabInstance: {fileID: 979146628}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1915869363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828179098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad444df56ab4cc84380cd0f138879203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _piggyDeathParticle: {fileID: 2293037585999488302, guid: 005be0c0c5eab0f41a5f13ef359f4eba, type: 3}
 --- !u!4 &1986514028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5944185812799553641, guid: 27dca7dd284c1b04e90fe1909ed58d9e, type: 3}
@@ -3973,11 +4003,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -9157511392698297968, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3642760065576864853, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 106900983275628469}
   m_SourcePrefab: {fileID: 100100000, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
+--- !u!114 &106900983275628469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136744836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad444df56ab4cc84380cd0f138879203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _piggyDeathParticle: {fileID: 2293037585999488302, guid: 005be0c0c5eab0f41a5f13ef359f4eba, type: 3}
 --- !u!1001 &4351329030659143176
 PrefabInstance:
   m_ObjectHideFlags: 0
