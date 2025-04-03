@@ -32,7 +32,7 @@ public class PiggieController : MonoBehaviour
         GameService.Instance.GetAudioService().PlaySound(AudioType.Pop);
 
         Instantiate(_piggyDeathParticle, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     protected void OnCollisionEnter2D(Collision2D other)
