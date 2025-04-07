@@ -43,7 +43,6 @@ public class GameService : GenericMonoSingleton<GameService>
             DontDestroyOnLoad(gameObject);
 
         CreateServices();
-        InitializeLevel();
     }
 
     private void CreateServices()
@@ -53,11 +52,6 @@ public class GameService : GenericMonoSingleton<GameService>
         _slingShotService = new SlingShotService(_slingShotController, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
         _cameraService = new CameraService(_cameraController);
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
-    }
-
-    private void InitializeLevel()
-    {
-
     }
 
     public LevelService GetLevelService() => _levelService;

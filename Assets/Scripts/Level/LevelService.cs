@@ -9,6 +9,8 @@ public class LevelService
     public LevelService(LevelController levelController, LevelScriptableObject levelSO)
     {
         _levelController = levelController;
+        _levelController.CurrentLevel = LevelNumber.Level_1;
+
         _levelController.Initialize(levelSO);
     }
 

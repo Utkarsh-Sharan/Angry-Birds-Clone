@@ -9,8 +9,6 @@ public class PiggyController
     protected float currentHealth;
     protected float damageThreshold;
 
-    private PiggyView _piggyView;
-
     public PiggyController() { }
 
     public PiggyController(List<PiggyScriptableObject> piggySOList)
@@ -20,21 +18,8 @@ public class PiggyController
         foreach(PiggyScriptableObject piggySO in piggySOList)
             piggyStatsDictionary[piggySO.PiggyType] = piggySO.PiggyStats;
 
-        //instantiate piggy views here according to level data.
+        //create piggy controllers here according to level data.
     }
 
-    public void OnPiggyCollision(Collision2D other)
-    {
-        float impactVelocity = other.relativeVelocity.magnitude;
-
-        if (impactVelocity > damageThreshold)
-            DamagePiggie(impactVelocity);
-    }
-
-    private void DamagePiggie(float damageAmount)
-    {
-        currentHealth -= damageAmount;
-        if (currentHealth < 0)
-            _piggyView.Die();
-    }
+    public virtual void OnPiggyCollision(Collision2D other) { }
 }

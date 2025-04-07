@@ -6,36 +6,35 @@ public class LevelController : MonoBehaviour
 {
     private const float TIME_TO_DECIDE_RESULT = 3f;
 
-    public Level CurrentLevel { get; set; }
+    public LevelNumber CurrentLevel { get; set; }
     private int _maxTries;
-    private int _triesLeft;
+    private int _tries;
 
+    private Dictionary<LevelNumber, (int, List<EnemiesToSpawn>)> _levelDictionary;
     private List<PiggyView> _piggies;
 
     public void Initialize(LevelScriptableObject levelSO)
     {
-        _maxTries = levelSO.MaxTries;
-
-        //foreach (LevelData level in levelSO.LevelDataList)
-        //{
-        //    _currentLevel = level.Level;
-        //}
-
-        CurrentLevel = Level.Level_1;
+        _levelDictionary = new Dictionary<LevelNumber, (int, List<EnemiesToSpawn>)>();
         _piggies = new List<PiggyView>();
+
+        foreach (LevelData level in levelSO.LevelDataList)
+            _levelDictionary[level.LevelNumber] = (level.MaxTriesForThisLevel, level.PiggiesToSpawnList);
+
+        _maxTries = _levelDictionary[CurrentLevel].Item1;
     }
 
-    public bool AreEnoughTriesLeft() => _triesLeft < _maxTries;
+    public bool AreEnoughTriesLeft() => _tries < _maxTries;
 
     public void IncreaseTries()
     {
-        ++_triesLeft;
+        ++_tries;
         CheckForLastTry();
     }
 
     private void CheckForLastTry()
     {
-        if (_triesLeft == _maxTries)
+        if (_tries == _maxTries)
             StartCoroutine(CheckForAllPiggiesDead());
     }
 
