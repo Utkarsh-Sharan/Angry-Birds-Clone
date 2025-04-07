@@ -10,6 +10,6 @@ public class GenericMonoSingleton<T> : MonoBehaviour where T : GenericMonoSingle
         if (_instance == null)
             _instance = (T)this;
         else
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 }

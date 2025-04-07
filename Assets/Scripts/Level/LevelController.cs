@@ -1,31 +1,31 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    private Level _currentLevel;
+    private const float TIME_TO_DECIDE_RESULT = 3f;
 
-    private int _maxTries = 3;
+    private Level _currentLevel;
+    private int _maxTries;
     private int _triesLeft;
-    private float _timeToDecideWinOrLoss = 3f;
 
     private List<PiggieController> _piggies;
 
-    private void Awake()
+    public void Initialize(LevelScriptableObject levelSO)
     {
+        _maxTries = levelSO.MaxTries;
+
+        //foreach (LevelData level in levelSO.LevelDataList)
+        //{
+        //    _currentLevel = level.Level;
+        //}
+
         _currentLevel = Level.Level_1;
         _piggies = new List<PiggieController>();
     }
 
-    public bool AreEnoughTriesLeft()
-    {
-        if(_triesLeft < _maxTries)
-            return true;
-
-        return false;
-    }
+    public bool AreEnoughTriesLeft() => _triesLeft < _maxTries;
 
     public void IncreaseTries()
     {
@@ -41,7 +41,7 @@ public class LevelController : MonoBehaviour
 
     private IEnumerator CheckForAllPiggiesDead()
     {
-        yield return new WaitForSeconds(_timeToDecideWinOrLoss);
+        yield return new WaitForSeconds(TIME_TO_DECIDE_RESULT);
 
         if (CheckIfAllPiggiesAreDead())
             yield return null;
@@ -49,7 +49,10 @@ public class LevelController : MonoBehaviour
             GameLost();
     }
 
-    public void AddPiggyToLevelList(PiggieController piggy) => _piggies.Add(piggy);
+    public void AddPiggyToLevelList(PiggieController piggy) 
+    {
+        _piggies.Add(piggy);
+    }
 
     public void RemovePiggyFromLevelList(PiggieController piggy)
     {

@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameService : MonoBehaviour
+public class GameService : GenericMonoSingleton<GameService>
 {
-    private static GameService _instance;
-    public static GameService Instance { get { return _instance; } }
-
     [Header("Controllers")]
     [SerializeField] private LevelController _levelController;
     [SerializeField] private SlingShotController _slingShotController;
@@ -26,11 +23,12 @@ public class GameService : MonoBehaviour
     [SerializeField] private SlingShotView _slingShotView;
 
     [Header("Audio Properties")]
-    [SerializeField] private List<AudioScriptableObject> _audioSOList;
     [SerializeField] private AudioSource _audioSource;
 
-    [Header("Piggy Properties")]
+    [Header("Scriptable Objects")]
+    [SerializeField] private LevelScriptableObject _levelSO;
     [SerializeField] private List<PiggyScriptableObject> _piggySOList;
+    [SerializeField] private List<AudioScriptableObject> _audioSOList;
 
     private LevelService _levelService;
     private PiggyService _piggyService;
@@ -38,17 +36,16 @@ public class GameService : MonoBehaviour
     private AudioService _audioService;
     private CameraService _cameraService;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if(_instance == null)
-            _instance = this;
+        base.Awake();
 
         CreateServices();
     }
 
     private void CreateServices()
     {
-        _levelService = new LevelService(_levelController);
+        _levelService = new LevelService(_levelController, _levelSO);
         _piggyService = new PiggyService(_piggyController, _piggySOList);
         _slingShotService = new SlingShotService(_slingShotController, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
         _cameraService = new CameraService(_cameraController);

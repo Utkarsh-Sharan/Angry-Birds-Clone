@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PiggieController : MonoBehaviour
 {
-    [SerializeField] protected GameObject _piggyDeathParticle;
+    [SerializeField] protected GameObject piggyDeathParticle;
 
     protected PiggyType piggyType;
     protected Dictionary<PiggyType, PiggyStats> piggyStatsDictionary;
@@ -31,7 +31,7 @@ public class PiggieController : MonoBehaviour
         GameService.Instance.GetLevelService().RemovePiggyFromLevelList(this);
         GameService.Instance.GetAudioService().PlaySound(AudioType.Pop);
 
-        Instantiate(_piggyDeathParticle, transform.position, Quaternion.identity);
+        Instantiate(piggyDeathParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

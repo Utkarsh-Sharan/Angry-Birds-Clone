@@ -8,10 +8,10 @@ public class NormalPiggyController : PiggieController
     {
         base.Initialize(piggySOList);
 
-        this.piggyType = PiggyType.Normal;
-        this.damageThreshold = piggyStatsDictionary[this.piggyType].DamageThreshold;
+        piggyType = PiggyType.Normal;
+        damageThreshold = piggyStatsDictionary[piggyType].DamageThreshold;
 
-        this.currentHealth = piggyStatsDictionary[this.piggyType].MaxHealth;
+        currentHealth = piggyStatsDictionary[piggyType].MaxHealth;
 
         GameService.Instance.GetLevelService().AddPiggyToLevelList(this);
     }

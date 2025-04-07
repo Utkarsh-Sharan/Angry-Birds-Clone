@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3901379747223798559}
   - component: {fileID: 1614655038271471263}
   m_Layer: 0
-  m_Name: Piggy
+  m_Name: NormalPiggy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad444df56ab4cc84380cd0f138879203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _piggyDeathParticle: {fileID: 2293037585999488302, guid: 005be0c0c5eab0f41a5f13ef359f4eba, type: 3}
+  piggyDeathParticle: {fileID: 2293037585999488302, guid: 005be0c0c5eab0f41a5f13ef359f4eba, type: 3}

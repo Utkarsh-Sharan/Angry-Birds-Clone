@@ -6,9 +6,10 @@ public class LevelService
 {
     private LevelController _levelController;
 
-    public LevelService(LevelController levelController)
+    public LevelService(LevelController levelController, LevelScriptableObject levelSO)
     {
         _levelController = levelController;
+        _levelController.Initialize(levelSO);
     }
 
     public bool AreEnoughTriesLeft() => _levelController.AreEnoughTriesLeft();
