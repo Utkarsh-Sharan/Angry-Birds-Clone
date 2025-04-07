@@ -19,6 +19,7 @@ public struct LevelData
 public struct EnemiesToSpawn
 {
     public PiggyType PiggyType;
+    public PiggyView PiggyView;
     public int NumberOfPiggies;
     public List<Vector2> SpawnPosition;
 }

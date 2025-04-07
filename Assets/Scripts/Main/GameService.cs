@@ -9,7 +9,6 @@ public class GameService : GenericMonoSingleton<GameService>
     [SerializeField] private SlingShotController _slingShotController;
     [SerializeField] private AudioController _audioController;
     [SerializeField] private CameraController _cameraController;
-    [SerializeField] private PiggieController _piggyController;
 
     [Header("Services")]
     [SerializeField] private UIService _uIService;
@@ -40,16 +39,25 @@ public class GameService : GenericMonoSingleton<GameService>
     {
         base.Awake();
 
+        if(Instance == null)
+            DontDestroyOnLoad(gameObject);
+
         CreateServices();
+        InitializeLevel();
     }
 
     private void CreateServices()
     {
         _levelService = new LevelService(_levelController, _levelSO);
-        _piggyService = new PiggyService(_piggyController, _piggySOList);
+        _piggyService = new PiggyService(_piggySOList);
         _slingShotService = new SlingShotService(_slingShotController, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
         _cameraService = new CameraService(_cameraController);
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
+    }
+
+    private void InitializeLevel()
+    {
+
     }
 
     public LevelService GetLevelService() => _levelService;

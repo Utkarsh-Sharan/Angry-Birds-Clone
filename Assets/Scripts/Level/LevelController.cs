@@ -6,11 +6,11 @@ public class LevelController : MonoBehaviour
 {
     private const float TIME_TO_DECIDE_RESULT = 3f;
 
-    private Level _currentLevel;
+    public Level CurrentLevel { get; set; }
     private int _maxTries;
     private int _triesLeft;
 
-    private List<PiggieController> _piggies;
+    private List<PiggyView> _piggies;
 
     public void Initialize(LevelScriptableObject levelSO)
     {
@@ -21,8 +21,8 @@ public class LevelController : MonoBehaviour
         //    _currentLevel = level.Level;
         //}
 
-        _currentLevel = Level.Level_1;
-        _piggies = new List<PiggieController>();
+        CurrentLevel = Level.Level_1;
+        _piggies = new List<PiggyView>();
     }
 
     public bool AreEnoughTriesLeft() => _triesLeft < _maxTries;
@@ -49,12 +49,12 @@ public class LevelController : MonoBehaviour
             GameLost();
     }
 
-    public void AddPiggyToLevelList(PiggieController piggy) 
+    public void AddPiggyToLevelList(PiggyView piggy) 
     {
         _piggies.Add(piggy);
     }
 
-    public void RemovePiggyFromLevelList(PiggieController piggy)
+    public void RemovePiggyFromLevelList(PiggyView piggy)
     {
         _piggies.Remove(piggy);
         CheckIfAllPiggiesAreDead();
