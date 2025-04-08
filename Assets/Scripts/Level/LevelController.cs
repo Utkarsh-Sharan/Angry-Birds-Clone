@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,19 +10,28 @@ public class LevelController : MonoBehaviour
     public LevelNumber CurrentLevel { get; set; }
     private int _maxTries;
     private int _tries;
+    private int _totalEnemiesInThisLevel;
 
-    private Dictionary<LevelNumber, (int, List<EnemiesToSpawn>)> _levelDictionary;
-    private List<PiggyView> _piggies;
+    private Dictionary<LevelNumber, (int, List<PiggiesToSpawn>)> _levelDictionary;
+    private List<PiggiesToSpawn> _piggiesToSpawnList;
 
     public void Initialize(LevelScriptableObject levelSO)
     {
-        _levelDictionary = new Dictionary<LevelNumber, (int, List<EnemiesToSpawn>)>();
-        _piggies = new List<PiggyView>();
+        _levelDictionary = new Dictionary<LevelNumber, (int, List<PiggiesToSpawn>)>();
 
         foreach (LevelData level in levelSO.LevelDataList)
             _levelDictionary[level.LevelNumber] = (level.MaxTriesForThisLevel, level.PiggiesToSpawnList);
 
         _maxTries = _levelDictionary[CurrentLevel].Item1;
+        _piggiesToSpawnList = _levelDictionary[CurrentLevel].Item2;
+
+        CalculateTotalEneiesInThisLevel();
+    }
+
+    private void CalculateTotalEneiesInThisLevel()
+    {
+        foreach (PiggiesToSpawn piggies in _piggiesToSpawnList)
+            _totalEnemiesInThisLevel += piggies.NumberOfPiggies;
     }
 
     public bool AreEnoughTriesLeft() => _tries < _maxTries;
@@ -38,6 +48,13 @@ public class LevelController : MonoBehaviour
             StartCoroutine(CheckForAllPiggiesDead());
     }
 
+    public void EnemyKilled()
+    {
+        --_totalEnemiesInThisLevel;
+        if (_totalEnemiesInThisLevel == 0)
+            GameWon();
+    }
+
     private IEnumerator CheckForAllPiggiesDead()
     {
         yield return new WaitForSeconds(TIME_TO_DECIDE_RESULT);
@@ -48,20 +65,9 @@ public class LevelController : MonoBehaviour
             GameLost();
     }
 
-    public void AddPiggyToLevelList(PiggyView piggy) 
-    {
-        _piggies.Add(piggy);
-    }
-
-    public void RemovePiggyFromLevelList(PiggyView piggy)
-    {
-        _piggies.Remove(piggy);
-        CheckIfAllPiggiesAreDead();
-    }
-
     private bool CheckIfAllPiggiesAreDead()
     {
-        if(_piggies.Count == 0)
+        if(_totalEnemiesInThisLevel == 0)
         {
             GameWon();
             return true;
@@ -79,4 +85,6 @@ public class LevelController : MonoBehaviour
     {
         GameService.Instance.GetUIService().DisplayLevelEndScreen(LevelResult.Lose);
     }
+
+    public List<PiggiesToSpawn> GetPiggiesToSpawnList() => _piggiesToSpawnList;
 }

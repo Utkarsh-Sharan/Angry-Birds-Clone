@@ -10,8 +10,6 @@ public class PiggyView : MonoBehaviour
     public void Initialize(PiggyController piggieController)
     {
         _piggyController = piggieController;
-
-        GameService.Instance.GetLevelService().AddPiggyToLevelList(this);
     }
 
     protected void OnCollisionEnter2D(Collision2D other)
@@ -21,7 +19,6 @@ public class PiggyView : MonoBehaviour
 
     public void Die()
     {
-        GameService.Instance.GetLevelService().RemovePiggyFromLevelList(this);
         GameService.Instance.GetAudioService().PlaySound(AudioType.Pop);
 
         Instantiate(piggyDeathParticle, transform.position, Quaternion.identity);

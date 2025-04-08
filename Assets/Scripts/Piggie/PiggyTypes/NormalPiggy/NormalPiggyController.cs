@@ -5,14 +5,12 @@ public class NormalPiggyController : PiggyController
 {
     private NormalPiggyView _normalPiggyView;
 
-    public NormalPiggyController()
+    public NormalPiggyController(PiggyView piggyView, List<Vector2> spawnPosition)
     {
-        piggyType = PiggyType.Normal;
-
         damageThreshold = piggyStatsDictionary[PiggyType.Normal].DamageThreshold;
         currentHealth = piggyStatsDictionary[PiggyType.Normal].MaxHealth;
 
-        //_normalPiggyView = Object.Instantiate(view);
+        //_normalPiggyView = Object.Instantiate(piggyView, spawnPosition, Quaternion.identity);
     }
 
     public override void OnPiggyCollision(Collision2D other)
@@ -26,7 +24,10 @@ public class NormalPiggyController : PiggyController
     private void DamagePiggie(float damageAmount)
     {
         currentHealth -= damageAmount;
-        //if (currentHealth < 0)
-        //    _piggyView.Die();
+        if (currentHealth < 0)
+        {
+            GameService.Instance.GetLevelService().EnemyKilled();
+            _normalPiggyView.Die();
+        }
     }
 }

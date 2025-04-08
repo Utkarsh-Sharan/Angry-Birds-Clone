@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class PiggyController
 {
-    protected PiggyType piggyType;
+    private List<PiggiesToSpawn> _piggiesToSpawnList;
     protected Dictionary<PiggyType, PiggyStats> piggyStatsDictionary;
 
     protected float currentHealth;
     protected float damageThreshold;
-
-    public PiggyController() { }
 
     public PiggyController(List<PiggyScriptableObject> piggySOList)
     {
@@ -18,8 +16,25 @@ public class PiggyController
         foreach(PiggyScriptableObject piggySO in piggySOList)
             piggyStatsDictionary[piggySO.PiggyType] = piggySO.PiggyStats;
 
-        //create piggy controllers here according to level data.
+        _piggiesToSpawnList = GameService.Instance.GetLevelService().GetPiggiesToSpawnList();
+
+        CreateChildControllers();
     }
+
+    private void CreateChildControllers()
+    {
+        foreach (PiggiesToSpawn piggies in _piggiesToSpawnList)
+        {
+            switch (piggies.PiggyType)
+            {
+                case PiggyType.Normal:
+                    new NormalPiggyController(piggies.PiggyView, piggies.SpawnPositionList);
+                    break;
+            }
+        }
+    }
+
+    public PiggyController() { }
 
     public virtual void OnPiggyCollision(Collision2D other) { }
 }

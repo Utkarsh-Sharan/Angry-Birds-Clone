@@ -12,11 +12,11 @@ public struct LevelData
 {
     public LevelNumber LevelNumber;
     public int MaxTriesForThisLevel;
-    public List<EnemiesToSpawn> PiggiesToSpawnList;
+    public List<PiggiesToSpawn> PiggiesToSpawnList;
 }
 
 [System.Serializable]
-public struct EnemiesToSpawn
+public struct PiggiesToSpawn
 {
     public PiggyType PiggyType;
     public PiggyView PiggyView;

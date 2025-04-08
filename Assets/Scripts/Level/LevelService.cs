@@ -16,6 +16,6 @@ public class LevelService
 
     public bool AreEnoughTriesLeft() => _levelController.AreEnoughTriesLeft();
     public void IncreaseTries() => _levelController.IncreaseTries();
-    public void AddPiggyToLevelList(PiggyView piggy) => _levelController.AddPiggyToLevelList(piggy);
-    public void RemovePiggyFromLevelList(PiggyView piggy) => _levelController.RemovePiggyFromLevelList(piggy);
+    public void EnemyKilled() => _levelController.EnemyKilled();
+    public List<PiggiesToSpawn> GetPiggiesToSpawnList() => _levelController.GetPiggiesToSpawnList();
 }
