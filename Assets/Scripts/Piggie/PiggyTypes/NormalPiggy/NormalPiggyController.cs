@@ -7,10 +7,11 @@ public class NormalPiggyController : PiggyController
 
     public NormalPiggyController(PiggyView piggyView, List<Vector2> spawnPosition)
     {
+        for(int i = 0; i < spawnPosition.Count; ++i)
+            _normalPiggyView = (NormalPiggyView)Object.Instantiate(piggyView, spawnPosition[i], Quaternion.identity);
+
         damageThreshold = piggyStatsDictionary[PiggyType.Normal].DamageThreshold;
         currentHealth = piggyStatsDictionary[PiggyType.Normal].MaxHealth;
-
-        //_normalPiggyView = Object.Instantiate(piggyView, spawnPosition, Quaternion.identity);
     }
 
     public override void OnPiggyCollision(Collision2D other)

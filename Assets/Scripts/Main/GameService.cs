@@ -48,9 +48,9 @@ public class GameService : GenericMonoSingleton<GameService>
     private void CreateServices()
     {
         _levelService = new LevelService(_levelController, _levelSO);
-        _piggyService = new PiggyService(_piggySOList);
         _slingShotService = new SlingShotService(_slingShotController, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
         _cameraService = new CameraService(_cameraController);
+        _piggyService = new PiggyService(_piggySOList);
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
     }
 

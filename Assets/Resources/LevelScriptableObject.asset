@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b4407b091921e409e925de6d920599, type: 3}
   m_Name: LevelScriptableObject
   m_EditorClassIdentifier: 
-  MaxTries: 0
   LevelDataList:
   - LevelNumber: 0
     MaxTriesForThisLevel: 3
-    PiggiesToSpawn:
+    PiggiesToSpawnList:
     - PiggyType: 0
       PiggyView: {fileID: 7576313323330774244, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
       NumberOfPiggies: 3
-      SpawnPosition:
-      - {x: 0, y: 0}
-      - {x: 0, y: 0}
-      - {x: 0, y: 0}
+      SpawnPositionList:
+      - {x: 3.27, y: -0.28}
+      - {x: 4.04, y: 1.94}
+      - {x: 7.06, y: 2}

@@ -25,12 +25,18 @@ public class PiggyController
     {
         foreach (PiggiesToSpawn piggies in _piggiesToSpawnList)
         {
-            switch (piggies.PiggyType)
+            for(int i = 0; i < piggies.NumberOfPiggies; ++i)
             {
-                case PiggyType.Normal:
-                    new NormalPiggyController(piggies.PiggyView, piggies.SpawnPositionList);
-                    break;
-            }
+                switch (piggies.PiggyType)
+                {
+                    case PiggyType.Normal:
+                        new NormalPiggyController(piggies.PiggyView, piggies.SpawnPositionList);
+                        break;
+                    default:
+                        Debug.Log("No such piggy typee exists!");
+                        break;
+                }
+            } 
         }
     }
 
