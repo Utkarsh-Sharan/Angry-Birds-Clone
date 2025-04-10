@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PiggyController
 {
-    private List<PiggiesToSpawn> _piggiesToSpawnList;
     protected Dictionary<PiggyType, PiggyStats> piggyStatsDictionary;
 
     protected float currentHealth;
@@ -15,29 +14,6 @@ public class PiggyController
 
         foreach(PiggyScriptableObject piggySO in piggySOList)
             piggyStatsDictionary[piggySO.PiggyType] = piggySO.PiggyStats;
-
-        _piggiesToSpawnList = GameService.Instance.GetLevelService().GetPiggiesToSpawnList();
-
-        CreateChildControllers();
-    }
-
-    private void CreateChildControllers()
-    {
-        foreach (PiggiesToSpawn piggies in _piggiesToSpawnList)
-        {
-            for(int i = 0; i < piggies.NumberOfPiggies; ++i)
-            {
-                switch (piggies.PiggyType)
-                {
-                    case PiggyType.Normal:
-                        new NormalPiggyController(piggies.PiggyView, piggies.SpawnPositionList);
-                        break;
-                    default:
-                        Debug.Log("No such piggy typee exists!");
-                        break;
-                }
-            } 
-        }
     }
 
     public PiggyController() { }
