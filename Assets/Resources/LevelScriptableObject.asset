@@ -20,6 +20,6 @@ MonoBehaviour:
       PiggyView: {fileID: 7576313323330774244, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
       NumberOfPiggies: 3
       SpawnPositionList:
-      - {x: 3.27, y: -0.28}
-      - {x: 4.04, y: 1.94}
-      - {x: 7.06, y: 2}
+      - {x: 3.288, y: -0.293}
+      - {x: 4.04, y: 1.909}
+      - {x: 7, y: 1.94}

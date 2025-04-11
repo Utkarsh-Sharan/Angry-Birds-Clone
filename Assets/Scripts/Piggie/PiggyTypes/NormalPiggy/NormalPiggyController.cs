@@ -1,17 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NormalPiggyController : PiggyController
 {
     private NormalPiggyView _normalPiggyView;
 
-    public NormalPiggyController(PiggyView piggyView, List<Vector2> spawnPosition)
+    public NormalPiggyController(PiggyView piggyView, PiggyScriptableObject piggySO, Vector2 spawnPosition)
     {
-        for(int i = 0; i < spawnPosition.Count; ++i)
-            _normalPiggyView = (NormalPiggyView)Object.Instantiate(piggyView, spawnPosition[i], Quaternion.identity);
+        _normalPiggyView = (NormalPiggyView)Object.Instantiate(piggyView, spawnPosition, Quaternion.identity);
+        _normalPiggyView.Initialize(this);
 
-        damageThreshold = piggyStatsDictionary[PiggyType.Normal].DamageThreshold;
-        currentHealth = piggyStatsDictionary[PiggyType.Normal].MaxHealth;
+        currentHealth = piggySO.PiggyStats.MaxHealth;
+        damageThreshold = piggySO.PiggyStats.DamageThreshold;
     }
 
     public override void OnPiggyCollision(Collision2D other)

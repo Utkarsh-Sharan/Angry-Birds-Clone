@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PiggyType: 0
   PiggyStats:
-    MaxHealth: 3
+    MaxHealth: 4
     DamageThreshold: 0.2

@@ -20,6 +20,7 @@ public struct PiggiesToSpawn
 {
     public PiggyType PiggyType;
     public PiggyView PiggyView;
+    public PiggyScriptableObject PiggyScriptableObject;
     public int NumberOfPiggies;
     public List<Vector2> SpawnPositionList;
 }
