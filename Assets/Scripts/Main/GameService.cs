@@ -31,6 +31,7 @@ public class GameService : GenericMonoSingleton<GameService>
 
     private LevelService _levelService;
     private PiggyService _piggyService;
+    private SlingshotConfig _slingshotConfig;
     private SlingShotService _slingShotService;
     private AudioService _audioService;
     private CameraService _cameraService;
@@ -45,7 +46,16 @@ public class GameService : GenericMonoSingleton<GameService>
     private void CreateServices()
     {
         _levelService = new LevelService(_levelController, _levelSO);
-        _slingShotService = new SlingShotService(_slingShotController, _slingShotSO, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
+        _slingshotConfig = new SlingshotConfig
+        {
+            slingShotSO = _slingShotSO,
+            mainCamera = _mainCamera,
+            centerTransform = _centerTransform,
+            idleTransform = _idleTransform,
+            slingShotArea = _slingShotArea,
+            slingShotView = _slingShotView,
+        };
+        _slingShotService = new SlingShotService(_slingShotController, _slingshotConfig);
         _cameraService = new CameraService(_cameraController);
         _piggyService = new PiggyService();
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);

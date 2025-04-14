@@ -16,16 +16,16 @@ public class SlingShotController : MonoBehaviour
     private bool _isClickedWithinArea;
     private int _life = 3;
 
-    public void Initialize(Camera mainCamera, Transform centerTransform, Transform idleTransform, SlingShotArea slingShotArea, SlingshotScriptableObject slingShotSO, SlingShotView slingShotView)
+    public void Initialize(SlingshotConfig config)
     {
-        _mainCamera = mainCamera;
-        _centerTransform = centerTransform;
-        _idleTransform = idleTransform;
-        _slingShotArea = slingShotArea;
-        _slingShotView = slingShotView;
+        _mainCamera = config.mainCamera;
+        _centerTransform = config.centerTransform;
+        _idleTransform = config.idleTransform;
+        _slingShotArea = config.slingShotArea;
+        _slingShotView = config.slingShotView;
 
         _inputService = GameService.Instance.GetInputService();
-        _slingShotModel = new SlingShotModel(slingShotSO);
+        _slingShotModel = new SlingShotModel(config.slingShotSO);
 
         _slingShotView.Initialize(_centerTransform, _idleTransform, _slingShotModel.BirdPositionOffset);
         _slingShotView.SpawnBird();
