@@ -26,7 +26,7 @@ public class GameService : GenericMonoSingleton<GameService>
 
     [Header("Scriptable Objects")]
     [SerializeField] private LevelScriptableObject _levelSO;
-    [SerializeField] private List<PiggyScriptableObject> _piggySOList;
+    [SerializeField] private SlingshotScriptableObject _slingShotSO;
     [SerializeField] private List<AudioScriptableObject> _audioSOList;
 
     private LevelService _levelService;
@@ -39,18 +39,15 @@ public class GameService : GenericMonoSingleton<GameService>
     {
         base.Awake();
 
-        if(Instance == null)
-            DontDestroyOnLoad(gameObject);
-
         CreateServices();
     }
 
     private void CreateServices()
     {
         _levelService = new LevelService(_levelController, _levelSO);
-        _slingShotService = new SlingShotService(_slingShotController, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
+        _slingShotService = new SlingShotService(_slingShotController, _slingShotSO, _mainCamera, _centerTransform, _idleTransform, _slingShotArea, _slingShotView);
         _cameraService = new CameraService(_cameraController);
-        _piggyService = new PiggyService(_piggySOList);
+        _piggyService = new PiggyService();
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);
     }
 

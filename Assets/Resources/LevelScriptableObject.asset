@@ -18,6 +18,7 @@ MonoBehaviour:
     PiggiesToSpawnList:
     - PiggyType: 0
       PiggyView: {fileID: 7576313323330774244, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
+      PiggyScriptableObject: {fileID: 11400000, guid: 48023d5bfaed8bc4fb4bde1bf11b22ad, type: 2}
       NumberOfPiggies: 3
       SpawnPositionList:
       - {x: 3.288, y: -0.293}

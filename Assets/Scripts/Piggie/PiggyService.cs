@@ -7,7 +7,7 @@ public class PiggyService
     private List<PiggiesToSpawn> _piggiesToSpawnList;
     private Dictionary<PiggyType, Action<PiggyView, PiggyScriptableObject, Vector2>> _piggiesSpawnDictionary;
 
-    public PiggyService(List<PiggyScriptableObject> piggySOList)
+    public PiggyService()
     {
         _piggiesToSpawnList = GameService.Instance.GetLevelService().GetPiggiesToSpawnList();
 

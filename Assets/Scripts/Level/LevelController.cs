@@ -36,6 +36,13 @@ public class LevelController : MonoBehaviour
 
     public bool AreEnoughTriesLeft() => _tries < _maxTries;
 
+    public void EnemyKilled()
+    {
+        --_totalEnemiesInThisLevel;
+        if (_totalEnemiesInThisLevel == 0)
+            GameWon();
+    }
+
     public void IncreaseTries()
     {
         ++_tries;
@@ -46,13 +53,6 @@ public class LevelController : MonoBehaviour
     {
         if (_tries == _maxTries)
             StartCoroutine(CheckForAllPiggiesDead());
-    }
-
-    public void EnemyKilled()
-    {
-        --_totalEnemiesInThisLevel;
-        if (_totalEnemiesInThisLevel == 0)
-            GameWon();
     }
 
     private IEnumerator CheckForAllPiggiesDead()

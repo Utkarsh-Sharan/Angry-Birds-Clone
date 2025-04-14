@@ -1880,7 +1880,7 @@ GameObject:
   - component: {fileID: 948623570}
   - component: {fileID: 948623569}
   m_Layer: 5
-  m_Name: GameWinScreen
+  m_Name: GameResultScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3287,8 +3287,7 @@ MonoBehaviour:
   _slingShotView: {fileID: 1874028047}
   _audioSource: {fileID: 1753700187}
   _levelSO: {fileID: 11400000, guid: d05b04dff3b44b14e81ae76171780b16, type: 2}
-  _piggySOList:
-  - {fileID: 11400000, guid: 48023d5bfaed8bc4fb4bde1bf11b22ad, type: 2}
+  _slingShotSO: {fileID: 11400000, guid: c4cc4cef95cc4af459952618bde4b17d, type: 2}
   _audioSOList:
   - {fileID: 11400000, guid: 066fc0e651ebcba4abebae86d1d5315e, type: 2}
   - {fileID: 11400000, guid: 539519445fbe5d4469ed0b608b6f982a, type: 2}

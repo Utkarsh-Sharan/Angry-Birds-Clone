@@ -25,7 +25,7 @@ public class SlingShotView : MonoBehaviour
     private Transform _idleTransform;
     private float _birdPositionOffset;
     private float _elasticDivider = 1.2f;
-    private bool _isBirdOnSlingShot = false;
+    public bool IsBirdOnSlingShot { get; set; }
 
     public void Initialize(Transform centerTransform, Transform idleTransform, float birdPositionOffset)
     {
@@ -47,7 +47,7 @@ public class SlingShotView : MonoBehaviour
         _spawnedBird = Instantiate(_birdPrefab, spawnPosition, Quaternion.identity);
         _spawnedBird.transform.right = direction;
 
-        _isBirdOnSlingShot = true;
+        IsBirdOnSlingShot = true;
     }
 
     public void PositionAndRotateBird(Vector2 slingShotLinesPosition, Vector2 directionNormalized, float birdPositionOffset)
@@ -95,6 +95,4 @@ public class SlingShotView : MonoBehaviour
     }
 
     public BirdController GetSpawnedBird() => _spawnedBird;
-    public bool GetBirdStatus() => _isBirdOnSlingShot;
-    public void SetBirdStatus(bool birdStatus) => _isBirdOnSlingShot = birdStatus;
 }
