@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 
-public class SlingShotController : MonoBehaviour
+public class SlingShotController
 {
     private Camera _mainCamera;
 
@@ -14,9 +13,8 @@ public class SlingShotController : MonoBehaviour
     private InputService _inputService;
 
     private bool _isClickedWithinArea;
-    private int _life = 3;
 
-    public void Initialize(SlingshotConfig config)
+    public SlingShotController(SlingshotConfig config)
     {
         _mainCamera = config.mainCamera;
         _centerTransform = config.centerTransform;
@@ -24,14 +22,15 @@ public class SlingShotController : MonoBehaviour
         _slingShotArea = config.slingShotArea;
         _slingShotView = config.slingShotView;
 
-        _inputService = GameService.Instance.GetInputService();
         _slingShotModel = new SlingShotModel(config.slingShotSO);
 
-        _slingShotView.Initialize(_centerTransform, _idleTransform, _slingShotModel.BirdPositionOffset);
-        _slingShotView.SpawnBird();
+        _slingShotView.Initialize(this, _centerTransform, _idleTransform, _slingShotModel.BirdPositionOffset);
+        _slingShotView.SpawnBirdAndSetSlingshotLines();
+
+        _inputService = GameService.Instance.GetInputService();
     }
 
-    private void Update()
+    public void UpdateSlingshot()
     {
         if(_inputService.WasLeftMouseButtonPressed() && _slingShotArea.IsWithinSlingShotArea())
         {
@@ -44,7 +43,7 @@ public class SlingShotController : MonoBehaviour
         {
             Vector2 slingShotLinesPosition = DrawSlingShot();
 
-            _slingShotView.SetLines(slingShotLinesPosition);
+            _slingShotView.SetSlingshotLines(slingShotLinesPosition);
             _slingShotView.PositionAndRotateBird(_slingShotModel.SlingshotLinesPosition, _slingShotModel.DirectionNormalized, _slingShotModel.BirdPositionOffset);
         }
 
@@ -58,12 +57,12 @@ public class SlingShotController : MonoBehaviour
                 _slingShotView.IsBirdOnSlingShot = false;
                 _slingShotView.AnimateSlingShot();
 
-                GameService.Instance.GetUIService().DecreaseLife(--_life);
+                GameService.Instance.GetUIService().DecreaseLife();
                 GameService.Instance.GetLevelService().IncreaseTries();
                 GameService.Instance.GetAudioService().PlaySound(AudioType.Elastic_1);
 
                 if (GameService.Instance.GetLevelService().AreEnoughTriesLeft())
-                    StartCoroutine(SpawnBirdAfterSomeTime());
+                    _slingShotView.SpawnAnotherBird();
             }
         }
     }
@@ -78,12 +77,5 @@ public class SlingShotController : MonoBehaviour
         _slingShotModel.DirectionNormalized = _slingShotModel.Direction.normalized;
 
         return _slingShotModel.SlingshotLinesPosition;
-    }
-
-    private IEnumerator SpawnBirdAfterSomeTime()
-    {
-        yield return new WaitForSeconds(2f);
-        _slingShotView.SpawnBird();
-        GameService.Instance.GetCameraService().SwitchToIdleCamera();
     }
 }

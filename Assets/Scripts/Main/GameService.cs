@@ -6,7 +6,6 @@ public class GameService : GenericMonoSingleton<GameService>
 {
     [Header("Controllers")]
     [SerializeField] private LevelController _levelController;
-    [SerializeField] private SlingShotController _slingShotController;
     [SerializeField] private AudioController _audioController;
     [SerializeField] private CameraController _cameraController;
 
@@ -55,7 +54,7 @@ public class GameService : GenericMonoSingleton<GameService>
             slingShotArea = _slingShotArea,
             slingShotView = _slingShotView,
         };
-        _slingShotService = new SlingShotService(_slingShotController, _slingshotConfig);
+        _slingShotService = new SlingShotService(_slingshotConfig);
         _cameraService = new CameraService(_cameraController);
         _piggyService = new PiggyService();
         _audioService = new AudioService(_audioController, _audioSOList, _audioSource);

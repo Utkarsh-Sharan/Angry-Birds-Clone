@@ -9,7 +9,8 @@ public class LevelService
     public LevelService(LevelController levelController, LevelScriptableObject levelSO)
     {
         _levelController = levelController;
-        _levelController.CurrentLevel = LevelNumber.Level_1;
+        _levelController.CurrentLevel = LevelNumber.Level_1;    //Will have to make level selection panel/scene, containing various level buttons.
+                                                                //Selected level will then become current level.
 
         _levelController.Initialize(levelSO);
     }

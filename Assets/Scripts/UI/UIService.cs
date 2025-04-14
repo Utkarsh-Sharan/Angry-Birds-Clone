@@ -13,17 +13,20 @@ public class UIService : MonoBehaviour
     [SerializeField] private Button _restartButton;
 
     private float _birdAlphaToSet = 0.1f;
+    private int _birdLives = 3;
 
-    private void Awake()
+    private void OnEnable()
     {
         _restartButton.onClick.AddListener(RestartGame);
     }
 
-    public void DecreaseLife(int life)
+    public void DecreaseLife()
     {
-        Color birdColor = _birdLifeIcons[life].color;
+        --_birdLives;
+
+        Color birdColor = _birdLifeIcons[_birdLives].color;
         birdColor.a = _birdAlphaToSet;
-        _birdLifeIcons[life].color = birdColor;
+        _birdLifeIcons[_birdLives].color = birdColor;
     }
 
     public void DisplayLevelEndScreen(LevelResult levelResult)
@@ -37,4 +40,9 @@ public class UIService : MonoBehaviour
     }
 
     private void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    private void OnDisable()
+    {
+        _restartButton.onClick.RemoveListener(RestartGame);
+    }
 }

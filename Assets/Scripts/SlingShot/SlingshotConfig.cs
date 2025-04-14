@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //Here I am following Parameter-Object Pattern
-//Instead of passing dependencies individually, I am binding those depedencies into an object, and then passing that object to the sling shot service
+//Instead of passing dependencies individually, I am binding those depedencies into an object, and then passing that object to the sling shot service via game service
 public class SlingshotConfig
 {
     public SlingshotScriptableObject slingShotSO;

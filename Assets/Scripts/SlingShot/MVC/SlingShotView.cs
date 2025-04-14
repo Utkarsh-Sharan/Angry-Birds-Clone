@@ -19,6 +19,7 @@ public class SlingShotView : MonoBehaviour
     [Header("Animation Curve")]
     [SerializeField] private AnimationCurve _elasticCurve;
 
+    private SlingShotController _slingShotController;
     private BirdController _spawnedBird;
 
     private Transform _centerTransform;
@@ -27,8 +28,9 @@ public class SlingShotView : MonoBehaviour
     private float _elasticDivider = 1.2f;
     public bool IsBirdOnSlingShot { get; set; }
 
-    public void Initialize(Transform centerTransform, Transform idleTransform, float birdPositionOffset)
+    public void Initialize(SlingShotController slingShotController, Transform centerTransform, Transform idleTransform, float birdPositionOffset)
     {
+        _slingShotController = slingShotController;
         _centerTransform = centerTransform;
         _idleTransform = idleTransform;
         _birdPositionOffset = birdPositionOffset;
@@ -37,9 +39,14 @@ public class SlingShotView : MonoBehaviour
         _rightlineRenderer.enabled = false;
     }
 
-    public void SpawnBird()
+    private void Update()
     {
-        SetLines(_idleTransform.position);
+        _slingShotController.UpdateSlingshot();
+    }
+
+    public void SpawnBirdAndSetSlingshotLines()
+    {
+        SetSlingshotLines(_idleTransform.position);
 
         Vector2 direction = (_centerTransform.position - _idleTransform.position).normalized;
         Vector2 spawnPosition = (Vector2)_idleTransform.position + direction * _birdPositionOffset;
@@ -56,7 +63,7 @@ public class SlingShotView : MonoBehaviour
         _spawnedBird.transform.right = directionNormalized;
     }
 
-    public void SetLines(Vector2 position)
+    public void SetSlingshotLines(Vector2 position)
     {
         if(!_leftlineRenderer.enabled && !_rightlineRenderer.enabled)
         {
@@ -82,13 +89,25 @@ public class SlingShotView : MonoBehaviour
         StartCoroutine(AnimateSlingShotLines(_elasticTransform, time));
     }
 
+    public void SpawnAnotherBird()
+    {
+        StartCoroutine(SpawnBirdAfterSomeTime());
+    }
+
+    private IEnumerator SpawnBirdAfterSomeTime()
+    {
+        yield return new WaitForSeconds(2f);
+        SpawnBirdAndSetSlingshotLines();
+        GameService.Instance.GetCameraService().SwitchToIdleCamera();
+    }
+
     private IEnumerator AnimateSlingShotLines(Transform transform, float time)
     {
         float elapsedTime = 0;
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
-            SetLines(transform.position);
+            SetSlingshotLines(transform.position);
 
             yield return null;
         }
