@@ -26,6 +26,8 @@ public class LevelController : MonoBehaviour
         _piggiesToSpawnList = _levelDictionary[CurrentLevel].Item2;
 
         CalculateTotalEneiesInThisLevel();
+
+        EventService.Instance.OnBirdLeftSlingshotEvent.AddListener(IncreaseTries);
     }
 
     private void CalculateTotalEneiesInThisLevel()
@@ -43,7 +45,7 @@ public class LevelController : MonoBehaviour
             GameWon();
     }
 
-    public void IncreaseTries()
+    private void IncreaseTries()
     {
         ++_tries;
         CheckForLastTry();
@@ -87,4 +89,9 @@ public class LevelController : MonoBehaviour
     }
 
     public List<PiggiesToSpawn> GetPiggiesToSpawnList() => _piggiesToSpawnList;
+
+    private void OnDisable()
+    {
+        EventService.Instance.OnBirdLeftSlingshotEvent.RemoveListener(IncreaseTries);
+    }
 }

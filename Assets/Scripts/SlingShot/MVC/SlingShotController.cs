@@ -52,13 +52,12 @@ public class SlingShotController
             if (GameService.Instance.GetLevelService().AreEnoughTriesLeft())
             {
                 _isClickedWithinArea = false;
+                _slingShotView.IsBirdOnSlingShot = false;
 
                 _slingShotView.GetSpawnedBird().LaunchBird(_slingShotModel.Direction, _slingShotModel.SlingshotForce);
-                _slingShotView.IsBirdOnSlingShot = false;
                 _slingShotView.AnimateSlingShot();
 
-                GameService.Instance.GetUIService().DecreaseLife();
-                GameService.Instance.GetLevelService().IncreaseTries();
+                EventService.Instance.OnBirdLeftSlingshotEvent.InvokeEvent();
                 GameService.Instance.GetAudioService().PlaySound(AudioType.Elastic_1);
 
                 if (GameService.Instance.GetLevelService().AreEnoughTriesLeft())

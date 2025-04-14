@@ -16,7 +16,6 @@ public class LevelService
     }
 
     public bool AreEnoughTriesLeft() => _levelController.AreEnoughTriesLeft();
-    public void IncreaseTries() => _levelController.IncreaseTries();
     public void EnemyKilled() => _levelController.EnemyKilled();
     public List<PiggiesToSpawn> GetPiggiesToSpawnList() => _levelController.GetPiggiesToSpawnList();
 }

@@ -18,9 +18,10 @@ public class UIService : MonoBehaviour
     private void OnEnable()
     {
         _restartButton.onClick.AddListener(RestartGame);
+        EventService.Instance.OnBirdLeftSlingshotEvent.AddListener(DecreaseLife);
     }
 
-    public void DecreaseLife()
+    private void DecreaseLife()
     {
         --_birdLives;
 
@@ -43,6 +44,9 @@ public class UIService : MonoBehaviour
 
     private void OnDisable()
     {
+        _birdLives = 3;
+
         _restartButton.onClick.RemoveListener(RestartGame);
+        EventService.Instance.OnBirdLeftSlingshotEvent.RemoveListener(DecreaseLife);
     }
 }
