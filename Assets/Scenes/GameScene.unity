@@ -3368,7 +3368,7 @@ MonoBehaviour:
   _leftStartTransform: {fileID: 1227552933}
   _rightStartTransform: {fileID: 1350535789}
   _elasticTransform: {fileID: 1748694576}
-  _birdPrefab: {fileID: 3914565488611131432, guid: 404e929032baf164dbfd58d8c0efcc83, type: 3}
+  _birdPrefab: {fileID: 275298294087225593, guid: 404e929032baf164dbfd58d8c0efcc83, type: 3}
   _elasticCurve:
     serializedVersion: 2
     m_Curve:

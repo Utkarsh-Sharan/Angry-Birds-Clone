@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using Main;
 using Constant;
+using Bird;
 
 namespace Slingshot
 {

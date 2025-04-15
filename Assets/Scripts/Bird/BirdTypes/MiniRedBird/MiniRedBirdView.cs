@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class MiniRedBirdView : MonoBehaviour
+namespace Bird
 {
-    
+    public class MiniRedBirdView : BirdView
+    {
+
+    }
 }
