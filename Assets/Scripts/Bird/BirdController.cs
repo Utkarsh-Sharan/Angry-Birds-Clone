@@ -11,10 +11,17 @@ namespace Bird
         private bool _isBirdLaunched = false;
         private bool _shouldFaceVelocityDirection = false;
 
-        public BirdController(BirdView birdView, Vector2 spawnPosition)
+        public BirdController(BirdView birdView, Vector2 spawnPosition, Vector2 direction)
         {
             _birdView = Object.Instantiate(birdView, spawnPosition, Quaternion.identity);
             _birdView.Initialize(this);
+            _birdView.transform.right = direction;
+        }
+
+        public void PositionAndRotateSpawnedBird(Vector2 slingShotLinesPosition, Vector2 directionNormalized, float birdPositionOffset)
+        {
+            _birdView.transform.position = slingShotLinesPosition + directionNormalized * birdPositionOffset;
+            _birdView.transform.right = directionNormalized;
         }
 
         public void FixedUpdateBird()
@@ -39,5 +46,7 @@ namespace Bird
             _shouldFaceVelocityDirection = false;
             GameService.Instance.GetAudioService().PlaySound(AudioTypes.Box_Hit);
         }
+
+        public Transform GetBirdTransform() => _birdView.transform;
     }
 }

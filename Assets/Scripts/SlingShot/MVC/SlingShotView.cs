@@ -25,7 +25,7 @@ namespace Slingshot
         [SerializeField] private AnimationCurve _elasticCurve;
 
         private SlingShotController _slingShotController;
-        private BirdView _spawnedBird;
+        private BirdController _spawnedBird;
 
         private Transform _centerTransform;
         private Transform _idleTransform;
@@ -59,14 +59,12 @@ namespace Slingshot
             Vector2 direction = (_centerTransform.position - _idleTransform.position).normalized;
             Vector2 spawnPosition = (Vector2)_idleTransform.position + direction * _birdPositionOffset;
 
-            _spawnedBird = Instantiate(_birdPrefab, spawnPosition, Quaternion.identity);
-            _spawnedBird.transform.right = direction;
+            _spawnedBird = new BirdController(_birdPrefab, spawnPosition, direction);
         }
 
         public void PositionAndRotateBird(Vector2 slingShotLinesPosition, Vector2 directionNormalized, float birdPositionOffset)
         {
-            _spawnedBird.transform.position = slingShotLinesPosition + directionNormalized * birdPositionOffset;
-            _spawnedBird.transform.right = directionNormalized;
+            _spawnedBird.PositionAndRotateSpawnedBird(slingShotLinesPosition, directionNormalized, birdPositionOffset);
         }
 
         public void SetSlingshotLines(Vector2 position)
@@ -119,6 +117,6 @@ namespace Slingshot
             }
         }
 
-        public BirdView GetSpawnedBird() => _spawnedBird;
+        public BirdController GetSpawnedBird() => _spawnedBird;
     }
 }

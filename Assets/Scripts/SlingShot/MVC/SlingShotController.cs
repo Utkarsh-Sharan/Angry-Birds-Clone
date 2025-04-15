@@ -40,7 +40,7 @@ namespace Slingshot
             {
                 _isClickedWithinArea = true;
                 GameService.Instance.GetAudioService().PlaySound(AudioTypes.Leather_Pull);
-                GameService.Instance.GetCameraService().SwitchToFollowCamera(_slingShotView.GetSpawnedBird().transform);
+                GameService.Instance.GetCameraService().SwitchToFollowCamera(_slingShotView.GetSpawnedBird().GetBirdTransform());
             }
 
             if (_inputService.IsLeftMouseButtonPressed() && _isClickedWithinArea && _slingShotView.IsBirdOnSlingShot)
