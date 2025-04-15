@@ -1,39 +1,52 @@
+using Audio;
+using Main;
 using UnityEngine;
 
-public class BirdController : MonoBehaviour
+namespace Bird
 {
-    [SerializeField] private Rigidbody2D _birdRigidBody;
-    [SerializeField] private CircleCollider2D _birdCollider;
-
-    private bool _isBirdLaunched = false;
-    private bool _shouldFaceVelocityDirection = false;
-
-    private void Awake()
+    public class BirdController
     {
-        _birdRigidBody.isKinematic = true;
-        _birdCollider.enabled = false;
-    }
+        private BirdView _birdView; 
 
-    private void FixedUpdate()
-    {
-        if (_isBirdLaunched && _shouldFaceVelocityDirection)
-            transform.right = _birdRigidBody.velocity;
-    }
+        private bool _isBirdLaunched = false;
+        private bool _shouldFaceVelocityDirection = false;
 
-    public void LaunchBird(Vector2 direction, float force)
-    {
-        _birdRigidBody.isKinematic = false;
-        _birdCollider.enabled = true;
+        public BirdController(BirdView birdView, Vector2 spawnPosition, Vector2 direction)
+        {
+            _birdView = Object.Instantiate(birdView, spawnPosition, Quaternion.identity);
+            _birdView.Initialize(this);
+            _birdView.transform.right = direction;
+        }
 
-        _birdRigidBody.AddForce(direction * force, ForceMode2D.Impulse);
-        _isBirdLaunched = true;
-        _shouldFaceVelocityDirection = true;
-    }
+        public void PositionAndRotateSpawnedBird(Vector2 slingShotLinesPosition, Vector2 directionNormalized, float birdPositionOffset)
+        {
+            _birdView.transform.position = slingShotLinesPosition + directionNormalized * birdPositionOffset;
+            _birdView.transform.right = directionNormalized;
+        }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        _shouldFaceVelocityDirection = false;
-        GameService.Instance.GetAudioService().PlaySound(AudioType.Box_Hit);
-        Destroy(this);
+        public void FixedUpdateBird()
+        {
+            if (_isBirdLaunched && _shouldFaceVelocityDirection)
+                _birdView.transform.right = _birdView.GetBirdRigidbody().velocity;
+        }
+
+        public void LaunchBird(Vector2 direction, float force)
+        {
+            _birdView.GetBirdRigidbody().isKinematic = false;
+            _birdView.GetBirdCollider().enabled = true;
+
+            _isBirdLaunched = true;
+            _shouldFaceVelocityDirection = true;
+
+            _birdView.GetBirdRigidbody().AddForce(direction * force, ForceMode2D.Impulse);
+        }
+
+        public void OnCollision(Collision2D other)
+        {
+            _shouldFaceVelocityDirection = false;
+            GameService.Instance.GetAudioService().PlaySound(AudioTypes.Box_Hit);
+        }
+
+        public Transform GetBirdTransform() => _birdView.transform;
     }
 }

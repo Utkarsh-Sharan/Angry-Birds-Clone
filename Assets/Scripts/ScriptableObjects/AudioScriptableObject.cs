@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Audio;
 
 [CreateAssetMenu(fileName = "AudioScriptableObject", menuName = "ScriptableObject/AudioScriptableObject")]
 public class AudioScriptableObject : ScriptableObject
 {
-    public AudioType AudioType;
+    public AudioTypes AudioTypes;
     public AudioClip AudioClip;
 }

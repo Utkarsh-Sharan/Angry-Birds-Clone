@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b4407b091921e409e925de6d920599, type: 3}
+  m_Name: LevelScriptableObject
+  m_EditorClassIdentifier: 
+  LevelDataList:
+  - LevelNumber: 0
+    MaxTriesForThisLevel: 3
+    PiggiesToSpawnList:
+    - PiggyType: 0
+      PiggyView: {fileID: 7576313323330774244, guid: 9628f2e608407c344b6352616dd033d3, type: 3}
+      PiggyScriptableObject: {fileID: 11400000, guid: 48023d5bfaed8bc4fb4bde1bf11b22ad, type: 2}
+      NumberOfPiggies: 3
+      SpawnPositionList:
+      - {x: 3.288, y: -0.293}
+      - {x: 4.04, y: 1.909}
+      - {x: 7, y: 1.94}

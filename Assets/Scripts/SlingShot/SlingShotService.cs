@@ -1,12 +1,10 @@
-using UnityEngine;
-
-public class SlingShotService
+namespace Slingshot
 {
-    private SlingShotController _slingShotController;
-
-    public SlingShotService(SlingShotController slingShotController, Camera mainCamera, Transform centerTransform, Transform idleTransform, SlingShotArea slingShotArea, SlingShotView slingShotView)
+    public class SlingShotService
     {
-        _slingShotController = slingShotController;
-        _slingShotController.Initialize(mainCamera, centerTransform, idleTransform, slingShotArea, slingShotView);
+        public SlingShotService(SlingshotConfig config)
+        {
+            new SlingShotController(config);
+        }
     }
 }

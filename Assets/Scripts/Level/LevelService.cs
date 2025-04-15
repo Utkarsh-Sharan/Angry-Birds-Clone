@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelService
+namespace Level
 {
-    private LevelController _levelController;
-
-    public LevelService(LevelController levelController)
+    public class LevelService
     {
-        _levelController = levelController;
-    }
+        private LevelController _levelController;
 
-    public bool AreEnoughTriesLeft() => _levelController.AreEnoughTriesLeft();
-    public void IncreaseTries() => _levelController.IncreaseTries();
-    public void AddPiggyToLevelList(PiggieController piggy) => _levelController.AddPiggyToLevelList(piggy);
-    public void RemovePiggyFromLevelList(PiggieController piggy) => _levelController.RemovePiggyFromLevelList(piggy);
+        public LevelService(LevelController levelController, LevelScriptableObject levelSO)
+        {
+            _levelController = levelController;
+            _levelController.CurrentLevel = LevelNumber.Level_1;    //Will have to make level selection panel/scene, containing various level buttons.
+                                                                    //Selected level will then become current level.
+
+            _levelController.Initialize(levelSO);
+        }
+
+        public bool AreEnoughTriesLeft() => _levelController.AreEnoughTriesLeft();
+        public void EnemyKilled() => _levelController.EnemyKilled();
+        public List<PiggiesToSpawn> GetPiggiesToSpawnList() => _levelController.GetPiggiesToSpawnList();
+    }
 }

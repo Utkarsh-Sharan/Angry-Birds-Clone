@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dab5c1c544650143879c790c4118b0e, type: 3}
   m_Name: LeatherPullAudioSO
   m_EditorClassIdentifier: 
-  AudioType: 4
+  AudioTypes: 4
   AudioClip: {fileID: 8300000, guid: 0d8e869e7f9fcad4e8f988b1915222e5, type: 3}
