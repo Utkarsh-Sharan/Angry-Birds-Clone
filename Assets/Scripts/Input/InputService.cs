@@ -12,8 +12,8 @@ namespace Input
 
         private Vector2 _mousePosition;
 
-        private bool _wasLeftMouseButtonPressed;
-        private bool _wasLeftMouseButtonReleased;
+        private bool _wasLeftMouseButtonPressedThisFrame;
+        private bool _wasLeftMouseButtonReleasedThisFrame;
         private bool _isLeftMouseButtonPressed;
 
         private void Awake()
@@ -26,14 +26,14 @@ namespace Input
         {
             _mousePosition = _mousePositionAction.ReadValue<Vector2>();
 
-            _wasLeftMouseButtonPressed = _mouseAction.WasPressedThisFrame();
-            _wasLeftMouseButtonReleased = _mouseAction.WasReleasedThisFrame();
+            _wasLeftMouseButtonPressedThisFrame = _mouseAction.WasPressedThisFrame();
+            _wasLeftMouseButtonReleasedThisFrame = _mouseAction.WasReleasedThisFrame();
             _isLeftMouseButtonPressed = _mouseAction.IsPressed();
         }
 
         public Vector2 GetMousePosition() => _mousePosition;
-        public bool WasLeftMouseButtonPressed() => _wasLeftMouseButtonPressed;
-        public bool WasLeftMouseButtonReleased() => _wasLeftMouseButtonReleased;
+        public bool WasLeftMouseButtonPressedThisFrame() => _wasLeftMouseButtonPressedThisFrame;
+        public bool WasLeftMouseButtonReleasedThisFrame() => _wasLeftMouseButtonReleasedThisFrame;
         public bool IsLeftMouseButtonPressed() => _isLeftMouseButtonPressed;
     }
 }

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Level;
+using Piggy;
 
 [CreateAssetMenu(fileName = "LevelScriptableObject", menuName = "ScriptableObject/LevelScriptableObject")]
 public class LevelScriptableObject : ScriptableObject

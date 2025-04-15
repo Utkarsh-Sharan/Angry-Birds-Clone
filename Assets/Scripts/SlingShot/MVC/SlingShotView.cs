@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using Main;
+using Constant;
 
 namespace Slingshot
 {
@@ -17,13 +18,13 @@ namespace Slingshot
         [SerializeField] private Transform _elasticTransform;
 
         [Header("Scripts")]
-        [SerializeField] private BirdController _birdPrefab;
+        [SerializeField] private BirdView _birdPrefab;
 
         [Header("Animation Curve")]
         [SerializeField] private AnimationCurve _elasticCurve;
 
         private SlingShotController _slingShotController;
-        private BirdController _spawnedBird;
+        private BirdView _spawnedBird;
 
         private Transform _centerTransform;
         private Transform _idleTransform;
@@ -100,7 +101,7 @@ namespace Slingshot
 
         private IEnumerator SpawnBirdAfterSomeTime()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(Constants.TIME_TO_SPAWN_ANOTHER_BIRD);
             SpawnBirdAndSetSlingshotLines();
             GameService.Instance.GetCameraService().SwitchToIdleCamera();
         }
@@ -117,6 +118,6 @@ namespace Slingshot
             }
         }
 
-        public BirdController GetSpawnedBird() => _spawnedBird;
+        public BirdView GetSpawnedBird() => _spawnedBird;
     }
 }

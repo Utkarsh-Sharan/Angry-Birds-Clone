@@ -2,26 +2,29 @@ using UnityEngine;
 using Main;
 using Audio;
 
-public class PiggyView : MonoBehaviour
+namespace Piggy
 {
-    [SerializeField] protected GameObject piggyDeathParticle;
-    private PiggyController _piggyController;
-
-    public void Initialize(PiggyController piggieController)
+    public class PiggyView : MonoBehaviour
     {
-        _piggyController = piggieController;
-    }
+        [SerializeField] protected GameObject piggyDeathParticle;
+        private PiggyController _piggyController;
 
-    protected void OnCollisionEnter2D(Collision2D other)
-    {
-        _piggyController.OnPiggyCollision(other);
-    }
+        public void Initialize(PiggyController piggieController)
+        {
+            _piggyController = piggieController;
+        }
 
-    public void Die()
-    {
-        GameService.Instance.GetAudioService().PlaySound(AudioTypes.Pop);
+        protected void OnCollisionEnter2D(Collision2D other)
+        {
+            _piggyController.OnPiggyCollision(other);
+        }
 
-        Instantiate(piggyDeathParticle, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        public void Die()
+        {
+            GameService.Instance.GetAudioService().PlaySound(AudioTypes.Pop);
+
+            Instantiate(piggyDeathParticle, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using Main;
 using Audio;
 
-public class BirdController : MonoBehaviour
+public class BirdView : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _birdRigidBody;
     [SerializeField] private CircleCollider2D _birdCollider;

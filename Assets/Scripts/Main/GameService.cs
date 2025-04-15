@@ -5,6 +5,8 @@ using Slingshot;
 using Audio;
 using Cameras;
 using Input;
+using Level;
+using Piggy;
 
 namespace Main
 {

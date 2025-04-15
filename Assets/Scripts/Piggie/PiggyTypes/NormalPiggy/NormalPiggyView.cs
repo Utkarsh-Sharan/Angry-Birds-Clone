@@ -1,4 +1,7 @@
-public class NormalPiggyView : PiggyView
+namespace Piggy
 {
-    
+    public class NormalPiggyView : PiggyView
+    {
+
+    }
 }

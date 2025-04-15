@@ -1,4 +1,7 @@
-public enum LevelNumber
+namespace Level
 {
-    Level_1
+    public enum LevelNumber
+    {
+        Level_1
+    }
 }

@@ -36,7 +36,7 @@ namespace Slingshot
 
         public void UpdateSlingshot()
         {
-            if (_inputService.WasLeftMouseButtonPressed() && _slingShotArea.IsWithinSlingShotArea())
+            if (_inputService.WasLeftMouseButtonPressedThisFrame() && _slingShotArea.IsWithinSlingShotArea())
             {
                 _isClickedWithinArea = true;
                 GameService.Instance.GetAudioService().PlaySound(AudioTypes.Leather_Pull);
@@ -51,7 +51,7 @@ namespace Slingshot
                 _slingShotView.PositionAndRotateBird(_slingShotModel.SlingshotLinesPosition, _slingShotModel.DirectionNormalized, _slingShotModel.BirdPositionOffset);
             }
 
-            if (_inputService.WasLeftMouseButtonReleased() && _slingShotView.IsBirdOnSlingShot)
+            if (_inputService.WasLeftMouseButtonReleasedThisFrame() && _slingShotView.IsBirdOnSlingShot)
             {
                 if (GameService.Instance.GetLevelService().AreEnoughTriesLeft())
                 {

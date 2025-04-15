@@ -1,5 +1,8 @@
-public enum LevelResult
+namespace Level
 {
-    Win,
-    Lose
+    public enum LevelResult
+    {
+        Win,
+        Lose
+    }
 }
