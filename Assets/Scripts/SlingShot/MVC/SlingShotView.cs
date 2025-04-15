@@ -25,15 +25,16 @@ public class SlingShotView : MonoBehaviour
     private Transform _centerTransform;
     private Transform _idleTransform;
     private float _birdPositionOffset;
-    private float _elasticDivider = 1.2f;
+    private float _elasticDivider;
     public bool IsBirdOnSlingShot { get; set; }
 
-    public void Initialize(SlingShotController slingShotController, Transform centerTransform, Transform idleTransform, float birdPositionOffset)
+    public void Initialize(SlingShotController slingShotController, SlingshotConfig config, float birdPositionOffset, float elasticDivider)
     {
         _slingShotController = slingShotController;
-        _centerTransform = centerTransform;
-        _idleTransform = idleTransform;
+        _centerTransform = config.centerTransform;
+        _idleTransform = config.idleTransform;
         _birdPositionOffset = birdPositionOffset;
+        _elasticDivider = elasticDivider;
         
         _leftlineRenderer.enabled = false;
         _rightlineRenderer.enabled = false;
@@ -45,7 +46,9 @@ public class SlingShotView : MonoBehaviour
     }
 
     public void SpawnBirdAndSetSlingshotLines()
-    {
+    { 
+        IsBirdOnSlingShot = true;
+
         SetSlingshotLines(_idleTransform.position);
 
         Vector2 direction = (_centerTransform.position - _idleTransform.position).normalized;
@@ -53,8 +56,6 @@ public class SlingShotView : MonoBehaviour
 
         _spawnedBird = Instantiate(_birdPrefab, spawnPosition, Quaternion.identity);
         _spawnedBird.transform.right = direction;
-
-        IsBirdOnSlingShot = true;
     }
 
     public void PositionAndRotateBird(Vector2 slingShotLinesPosition, Vector2 directionNormalized, float birdPositionOffset)
@@ -78,6 +79,11 @@ public class SlingShotView : MonoBehaviour
         _rightlineRenderer.SetPosition(1, _rightStartTransform.position);
     }
 
+    public void SpawnAnotherBird()
+    {
+        StartCoroutine(SpawnBirdAfterSomeTime());
+    }
+
     public void AnimateSlingShot()
     {
         _elasticTransform.position = _leftlineRenderer.GetPosition(0);
@@ -87,11 +93,6 @@ public class SlingShotView : MonoBehaviour
 
         _elasticTransform.DOMove(_centerTransform.position, time).SetEase(_elasticCurve);
         StartCoroutine(AnimateSlingShotLines(_elasticTransform, time));
-    }
-
-    public void SpawnAnotherBird()
-    {
-        StartCoroutine(SpawnBirdAfterSomeTime());
     }
 
     private IEnumerator SpawnBirdAfterSomeTime()

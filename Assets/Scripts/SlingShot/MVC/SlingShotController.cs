@@ -5,7 +5,6 @@ public class SlingShotController
     private Camera _mainCamera;
 
     private Transform _centerTransform;
-    private Transform _idleTransform;
 
     private SlingShotArea _slingShotArea;
     private SlingShotView _slingShotView;
@@ -18,13 +17,12 @@ public class SlingShotController
     {
         _mainCamera = config.mainCamera;
         _centerTransform = config.centerTransform;
-        _idleTransform = config.idleTransform;
         _slingShotArea = config.slingShotArea;
         _slingShotView = config.slingShotView;
 
         _slingShotModel = new SlingShotModel(config.slingShotSO);
 
-        _slingShotView.Initialize(this, _centerTransform, _idleTransform, _slingShotModel.BirdPositionOffset);
+        _slingShotView.Initialize(this, config, _slingShotModel.BirdPositionOffset, _slingShotModel.ElasticDivider);
         _slingShotView.SpawnBirdAndSetSlingshotLines();
 
         _inputService = GameService.Instance.GetInputService();

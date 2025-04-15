@@ -6,4 +6,5 @@ public class SlingshotScriptableObject : ScriptableObject
     public float MaxDistance;
     public float BirdPositionOffset;
     public float SlingshotForce;
+    public float ElasticDivider;
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   MaxDistance: 3.5
   BirdPositionOffset: 0.3
   SlingshotForce: 9
+  ElasticDivider: 1.2

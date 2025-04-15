@@ -10,8 +10,8 @@ public class EventController<T>
 
 public class EventController
 {
-    public Action ActionBaseEvent;
-    public void AddListener(Action listener) => ActionBaseEvent += listener;
-    public void InvokeEvent() => ActionBaseEvent?.Invoke();
-    public void RemoveListener(Action listener) => ActionBaseEvent -= listener;
+    public Action BaseEvent;
+    public void AddListener(Action listener) => BaseEvent += listener;
+    public void InvokeEvent() => BaseEvent?.Invoke();
+    public void RemoveListener(Action listener) => BaseEvent -= listener;
 }
