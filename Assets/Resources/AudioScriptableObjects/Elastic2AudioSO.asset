@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dab5c1c544650143879c790c4118b0e, type: 3}
   m_Name: Elastic2AudioSO
   m_EditorClassIdentifier: 
-  AudioType: 1
+  AudioTypes: 1
   AudioClip: {fileID: 8300000, guid: 93fbdcdaf1f669a46a51c6e1bedb509d, type: 3}

@@ -1,27 +1,30 @@
 using UnityEngine;
 using Cinemachine;
 
-public class CameraController : MonoBehaviour
+namespace Cameras
 {
-    [SerializeField] private CinemachineVirtualCamera _playerIdleCamera;
-    [SerializeField] private CinemachineVirtualCamera _playerFollowCamera;
-
-    private void Awake()
+    public class CameraController : MonoBehaviour
     {
-        SwitchToIdleCamera();
-    }
+        [SerializeField] private CinemachineVirtualCamera _playerIdleCamera;
+        [SerializeField] private CinemachineVirtualCamera _playerFollowCamera;
 
-    public void SwitchToIdleCamera()
-    {
-        _playerIdleCamera.enabled = true;
-        _playerFollowCamera.enabled = false;
-    }
+        private void Awake()
+        {
+            SwitchToIdleCamera();
+        }
 
-    public void SwitchToFollowCamera(Transform playerTransform)
-    {
-        _playerFollowCamera.Follow = playerTransform;
+        public void SwitchToIdleCamera()
+        {
+            _playerIdleCamera.enabled = true;
+            _playerFollowCamera.enabled = false;
+        }
 
-        _playerFollowCamera.enabled = true;
-        _playerIdleCamera.enabled = false;
+        public void SwitchToFollowCamera(Transform playerTransform)
+        {
+            _playerFollowCamera.Follow = playerTransform;
+
+            _playerFollowCamera.enabled = true;
+            _playerIdleCamera.enabled = false;
+        }
     }
 }

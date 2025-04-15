@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class CameraService
+namespace Cameras
 {
-    private CameraController _cameraController;
-
-    public CameraService(CameraController cameraController)
+    public class CameraService
     {
-        _cameraController = cameraController;
+        private CameraController _cameraController;
+
+        public CameraService(CameraController cameraController)
+        {
+            _cameraController = cameraController;
+        }
+
+        public void SwitchToIdleCamera() => _cameraController.SwitchToIdleCamera();
+
+        public void SwitchToFollowCamera(Transform playerTransform) => _cameraController.SwitchToFollowCamera(playerTransform);
     }
-
-    public void SwitchToIdleCamera() => _cameraController.SwitchToIdleCamera();
-
-    public void SwitchToFollowCamera(Transform playerTransform) => _cameraController.SwitchToFollowCamera(playerTransform);
 }

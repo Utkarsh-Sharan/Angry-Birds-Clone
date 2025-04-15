@@ -2158,6 +2158,7 @@ MonoBehaviour:
   _congratsImage: {fileID: 1299124939}
   _loseText: {fileID: 1466219613}
   _restartButton: {fileID: 169610749}
+  _uIScriptableObject: {fileID: 11400000, guid: 685e222cf7535cb47bc96ed51d5869e0, type: 2}
 --- !u!1 &1198393566
 GameObject:
   m_ObjectHideFlags: 0

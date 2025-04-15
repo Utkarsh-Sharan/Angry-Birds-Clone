@@ -1,4 +1,6 @@
 using UnityEngine;
+using Main;
+using Audio;
 
 public class PiggyView : MonoBehaviour
 {
@@ -17,7 +19,7 @@ public class PiggyView : MonoBehaviour
 
     public void Die()
     {
-        GameService.Instance.GetAudioService().PlaySound(AudioType.Pop);
+        GameService.Instance.GetAudioService().PlaySound(AudioTypes.Pop);
 
         Instantiate(piggyDeathParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);

@@ -2,51 +2,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Event;
 
-public class UIService : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private List<Image> _birdLifeIcons;
-
-    [SerializeField] private GameObject _restartScreen;
-    [SerializeField] private Image _congratsImage;
-    [SerializeField] private Text _loseText;
-    [SerializeField] private Button _restartButton;
-
-    private float _birdAlphaToSet = 0.1f;
-    private int _birdLives = 3;
-
-    private void OnEnable()
+    public class UIService : MonoBehaviour
     {
-        _restartButton.onClick.AddListener(RestartGame);
-        EventService.Instance.OnBirdLeftSlingshotEvent.AddListener(DecreaseLife);
-    }
+        [SerializeField] private List<Image> _birdLifeIcons;
 
-    private void DecreaseLife()
-    {
-        --_birdLives;
+        [SerializeField] private GameObject _restartScreen;
+        [SerializeField] private Image _congratsImage;
+        [SerializeField] private Text _loseText;
+        [SerializeField] private Button _restartButton;
+        [SerializeField] private UIScriptableObject _uIScriptableObject;
 
-        Color birdColor = _birdLifeIcons[_birdLives].color;
-        birdColor.a = _birdAlphaToSet;
-        _birdLifeIcons[_birdLives].color = birdColor;
-    }
+        private float _birdAlphaToSet;
+        private int _birdLives;
 
-    public void DisplayLevelEndScreen(LevelResult levelResult)
-    {
-        _restartScreen.SetActive(true); 
+        private void OnEnable()
+        {
+            _birdAlphaToSet = _uIScriptableObject.BirdAlphaToSet;
+            _birdLives = _uIScriptableObject.BirdLives;
 
-        if (levelResult == LevelResult.Win)
-            _loseText.enabled = false;
-        else
-            _congratsImage.enabled = false;
-    }
+            _restartButton.onClick.AddListener(RestartGame);
+            EventService.Instance.OnBirdLeftSlingshotEvent.AddListener(DecreaseLife);
+        }
 
-    private void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        private void DecreaseLife()
+        {
+            --_birdLives;
 
-    private void OnDisable()
-    {
-        _birdLives = 3;
+            Color birdColor = _birdLifeIcons[_birdLives].color;
+            birdColor.a = _birdAlphaToSet;
+            _birdLifeIcons[_birdLives].color = birdColor;
+        }
 
-        _restartButton.onClick.RemoveListener(RestartGame);
-        EventService.Instance.OnBirdLeftSlingshotEvent.RemoveListener(DecreaseLife);
+        public void DisplayLevelEndScreen(LevelResult levelResult)
+        {
+            _restartScreen.SetActive(true);
+
+            if (levelResult == LevelResult.Win)
+                _loseText.enabled = false;
+            else
+                _congratsImage.enabled = false;
+        }
+
+        private void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        private void OnDisable()
+        {
+            _restartButton.onClick.RemoveListener(RestartGame);
+            EventService.Instance.OnBirdLeftSlingshotEvent.RemoveListener(DecreaseLife);
+        }
     }
 }

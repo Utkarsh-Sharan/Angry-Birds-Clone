@@ -1,18 +1,21 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Main;
 
-public class SlingShotArea : MonoBehaviour
+namespace Slingshot
 {
-    [SerializeField] private Camera _mainCamera;
-    [SerializeField] private LayerMask _slingShotAreaMask;
-
-    public bool IsWithinSlingShotArea()
+    public class SlingShotArea : MonoBehaviour
     {
-        Vector2 worldPosition = _mainCamera.ScreenToWorldPoint(GameService.Instance.GetInputService().GetMousePosition());
+        [SerializeField] private Camera _mainCamera;
+        [SerializeField] private LayerMask _slingShotAreaMask;
 
-        if (Physics2D.OverlapPoint(worldPosition, _slingShotAreaMask))
-            return true;
-        
-        return false;
+        public bool IsWithinSlingShotArea()
+        {
+            Vector2 worldPosition = _mainCamera.ScreenToWorldPoint(GameService.Instance.GetInputService().GetMousePosition());
+
+            if (Physics2D.OverlapPoint(worldPosition, _slingShotAreaMask))
+                return true;
+
+            return false;
+        }
     }
 }

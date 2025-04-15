@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Main;
+using Event;
 
 public class LevelController : MonoBehaviour
 {

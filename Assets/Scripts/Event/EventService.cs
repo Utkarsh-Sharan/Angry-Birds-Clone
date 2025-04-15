@@ -1,16 +1,19 @@
-public class EventService : GenericMonoSingleton<EventService>
+namespace Event
 {
-    public EventController OnBirdLeftSlingshotEvent { get; private set; }
-
-    protected override void Awake()
+    public class EventService : GenericMonoSingleton<EventService>
     {
-        base.Awake();
+        public EventController OnBirdLeftSlingshotEvent { get; private set; }
 
-        InitializeEvents();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
 
-    private void InitializeEvents()
-    {
-        OnBirdLeftSlingshotEvent = new EventController();
+            InitializeEvents();
+        }
+
+        private void InitializeEvents()
+        {
+            OnBirdLeftSlingshotEvent = new EventController();
+        }
     }
 }

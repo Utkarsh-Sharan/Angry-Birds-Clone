@@ -1,4 +1,6 @@
 using UnityEngine;
+using Main;
+using Audio;
 
 public class BirdController : MonoBehaviour
 {
@@ -33,7 +35,7 @@ public class BirdController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _shouldFaceVelocityDirection = false;
-        GameService.Instance.GetAudioService().PlaySound(AudioType.Box_Hit);
+        GameService.Instance.GetAudioService().PlaySound(AudioTypes.Box_Hit);
         Destroy(this);
     }
 }

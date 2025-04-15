@@ -1,7 +1,10 @@
-public class SlingShotService
+namespace Slingshot
 {
-   public SlingShotService(SlingshotConfig config)
-   {
-        new SlingShotController(config);
-   }
+    public class SlingShotService
+    {
+        public SlingShotService(SlingshotConfig config)
+        {
+            new SlingShotController(config);
+        }
+    }
 }

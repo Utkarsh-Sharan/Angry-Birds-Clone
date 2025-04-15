@@ -1,30 +1,32 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioController : MonoBehaviour
+namespace Audio
 {
-    private Dictionary<AudioType, AudioClip> _audioClipDictionary;
-    private AudioSource _audioSource;
-
-    public void Init(List<AudioScriptableObject> audioSOList, AudioSource audioSource)
+    public class AudioController : MonoBehaviour
     {
-        _audioClipDictionary = new Dictionary<AudioType, AudioClip>();
-        _audioSource = audioSource;
+        private Dictionary<AudioTypes, AudioClip> _audioClipDictionary;
+        private AudioSource _audioSource;
 
-        foreach (AudioScriptableObject audioData in audioSOList)
+        public void Init(List<AudioScriptableObject> audioSOList, AudioSource audioSource)
         {
-            if (!_audioClipDictionary.ContainsKey(audioData.AudioType))
-                _audioClipDictionary[audioData.AudioType] = audioData.AudioClip;
+            _audioClipDictionary = new Dictionary<AudioTypes, AudioClip>();
+            _audioSource = audioSource;
+
+            foreach (AudioScriptableObject audioData in audioSOList)
+            {
+                if (!_audioClipDictionary.ContainsKey(audioData.AudioTypes))
+                    _audioClipDictionary[audioData.AudioTypes] = audioData.AudioClip;
+            }
         }
-    }
 
-    public void PlaySound(AudioType audioType)
-    {
-        if(_audioClipDictionary.TryGetValue(audioType, out AudioClip clip))
+        public void PlaySound(AudioTypes audioType)
         {
-            _audioSource.clip = clip;
-            _audioSource.Play();
+            if (_audioClipDictionary.TryGetValue(audioType, out AudioClip clip))
+            {
+                _audioSource.clip = clip;
+                _audioSource.Play();
+            }
         }
     }
 }
